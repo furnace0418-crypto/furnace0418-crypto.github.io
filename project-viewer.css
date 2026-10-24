@@ -50,3 +50,9 @@
 /* Allow zoom levels below fit-to-width and keep smaller pages centered. */
 .project-reader-pages{min-width:0;margin-inline:auto}
 .project-reader-controls>button[aria-label="缩小"]{font-size:25px;line-height:1}
+
+@media (hover:none), (max-width:780px){
+  .project-reader-viewport{touch-action:pan-x pan-y;cursor:auto;overscroll-behavior:contain}
+  .project-reader-hint{font-size:0}
+  .project-reader-hint::after{content:'上下滑动浏览作品';font-size:11px}
+}

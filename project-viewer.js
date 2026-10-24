@@ -45,8 +45,8 @@ export function createProjectViewer(React,jsx){
     el('button',{className:'project-reader-close',onClick:onClose,'aria-label':'关闭项目',children:'×'})
    ]}),
    els('div',{className:'project-reader-body',children:[
-    el('div',{ref:view,className:'project-reader-viewport',tabIndex:0,'aria-label':'项目页面，可滚动、拖拽，Ctrl 加滚轮缩放',onScroll:track,
-     onPointerDown:event=>{if(event.button!==0)return;const node=view.current;drag.current={x:event.clientX,y:event.clientY,left:node.scrollLeft,top:node.scrollTop};node.setPointerCapture(event.pointerId);node.classList.add('is-dragging')},
+    el('div',{ref:view,className:'project-reader-viewport',tabIndex:0,'aria-label':'项目页面，可滑动浏览，桌面可拖拽、Ctrl 加滚轮缩放',onScroll:track,
+     onPointerDown:event=>{if(event.pointerType!=='mouse'||event.button!==0)return;const node=view.current;drag.current={x:event.clientX,y:event.clientY,left:node.scrollLeft,top:node.scrollTop};node.setPointerCapture(event.pointerId);node.classList.add('is-dragging')},
      onPointerMove:event=>{if(!drag.current)return;const d=drag.current;view.current.scrollLeft=d.left-event.clientX+d.x;view.current.scrollTop=d.top-event.clientY+d.y},
      onPointerUp:()=>{drag.current=null;view.current?.classList.remove('is-dragging')},
      onPointerCancel:()=>{drag.current=null;view.current?.classList.remove('is-dragging')},

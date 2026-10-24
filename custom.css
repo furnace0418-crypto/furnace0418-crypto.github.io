@@ -663,3 +663,22 @@ html.title-reveal-enabled :is(.directory-mega-title,.profile-title,.section-titl
 .hero-tap-to-play{position:absolute;z-index:20;right:24px;bottom:32px;padding:11px 15px;border:1px solid #ffffff66;border-radius:999px;background:#101113e8;color:#fff;font:600 13px Arial,sans-serif}
 @media(max-width:780px){.hero-tap-to-play{right:15px;bottom:18px}}
 
+/* Project archive: touch users browse covers by swiping, then tap to open. */
+@media (hover:none), (max-width:780px){
+  #ip .ip-accordion-wrap{overflow:visible}
+  #ip .ip-accordion{display:flex!important;align-items:stretch;gap:12px!important;width:100%;height:min(68svh,540px)!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;touch-action:pan-x;scrollbar-width:none;padding:0 max(0px,calc((100% - min(82vw,430px))/2)) 8px;box-sizing:border-box}
+  #ip .ip-accordion::-webkit-scrollbar{display:none}
+  #ip .ip-accordion .ag-panel{position:relative!important;display:block!important;flex:0 0 min(82vw,430px)!important;width:min(82vw,430px)!important;min-width:min(82vw,430px)!important;height:100%!important;scroll-snap-align:center;transform:none!important;filter:none!important;opacity:1!important;overflow:hidden;touch-action:pan-x;cursor:pointer}
+  #ip .ip-accordion .ag-panel__frame{position:absolute;inset:0;display:block;width:100%;height:100%}
+  #ip .ip-accordion .ag-panel__media{position:absolute!important;inset:0!important;left:0!important;top:0!important;width:100%!important;height:100%!important;transform:none!important;filter:none!important}
+  #ip .ip-accordion .ag-panel__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:none!important;filter:none!important;opacity:1!important;mask-image:none!important;-webkit-mask-image:none!important}
+  #ip .ip-accordion .project-cover-copy,#ip .ip-accordion .project-cover-category,#ip .ip-accordion .project-cover-arrow{opacity:1!important;visibility:visible!important}
+  #ip .ip-accordion .project-cover-copy{padding:16px;gap:4px;justify-content:flex-end;background:linear-gradient(180deg,transparent 18%,rgba(9,10,13,.2) 40%,rgba(9,10,13,.94) 100%)}
+  #ip .ip-accordion .project-cover-copy .project-cover-category{margin:0 0 7px;min-height:24px;font-size:9px}
+  #ip .ip-accordion .project-cover-title{font-size:clamp(19px,5vw,27px);line-height:1.12;overflow-wrap:anywhere}
+  #ip .ip-accordion .project-cover-cn{font-size:15px;margin-top:5px}
+  #ip .ip-accordion .project-cover-description{font-size:11px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  #ip .ip-accordion .project-cover-arrow{width:38px;height:38px;top:12px;right:12px;transform:none!important}
+  #ip .ip-accordion .ag-panel__spine-label,#ip .ip-accordion .ag-panel__label{display:none!important}
+}
+

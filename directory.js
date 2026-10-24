@@ -37,7 +37,7 @@ export function createDirectory(React, jsx, cards, motion) {
       if(!section)return;
       section.dataset.chapter='0';
       section.dataset.chapterChangedAt=String(performance.now());
-      let lastSwitch=0,accumulated=0,touchY=null,overviewHold=0;
+      let lastSwitch=0,accumulated=0,overviewHold=0;
       const overviewIndex=visibleCards.length;
       const inDirectory=()=>Math.abs(section.getBoundingClientRect().top)<=90;
       const advance=direction=>{
@@ -89,14 +89,6 @@ export function createDirectory(React, jsx, cards, motion) {
         const direction=['ArrowDown','PageDown'].includes(event.key)?1:['ArrowUp','PageUp'].includes(event.key)?-1:0;
         if(direction&&step(direction))event.preventDefault();
       };
-      const touchStart=event=>{if(inDirectory())touchY=event.touches[0]?.clientY??null};
-      const touchMove=event=>{if(touchY!==null&&inDirectory()&&activeRef.current<overviewIndex)event.preventDefault()};
-      const touchEnd=event=>{
-        if(touchY===null||!inDirectory())return;
-        const distance=touchY-(event.changedTouches[0]?.clientY??touchY);
-        touchY=null;
-        if(Math.abs(distance)>45&&step(Math.sign(distance)))event.preventDefault();
-      };
       const enterFromBelow=()=>{
         activeRef.current=overviewIndex;
         overviewHold=1;
@@ -125,10 +117,7 @@ export function createDirectory(React, jsx, cards, motion) {
       section.addEventListener('directory:enter-from-above',enterFromAbove);
       const stepEvent=event=>step(event.detail);
       section.addEventListener('directory:step',stepEvent);
-      section.addEventListener('touchstart',touchStart,{passive:true});
-      section.addEventListener('touchmove',touchMove,{passive:false});
-      section.addEventListener('touchend',touchEnd,{passive:false});
-      return()=>{removeEventListener('wheel',wheel,true);removeEventListener('keydown',key);section.removeEventListener('directory:enter-from-below',enterFromBelow);section.removeEventListener('directory:enter-from-above',enterFromAbove);section.removeEventListener('directory:step',stepEvent);section.removeEventListener('touchstart',touchStart);section.removeEventListener('touchmove',touchMove);section.removeEventListener('touchend',touchEnd)};
+      return()=>{removeEventListener('wheel',wheel,true);removeEventListener('keydown',key);section.removeEventListener('directory:enter-from-below',enterFromBelow);section.removeEventListener('directory:enter-from-above',enterFromAbove);section.removeEventListener('directory:step',stepEvent)};
     },[]);
 
     const dialog=React.useRef(null);
@@ -172,6 +161,7 @@ export function createDirectory(React, jsx, cards, motion) {
               ]})
             ]},card.id))}),
             els('nav',{className:'directory-mobile-controls','aria-label':'卡片翻页',children:[
+              el('button',{type:'button',className:'directory-home-button','aria-label':'返回首页',onClick:()=>document.getElementById('work')?.dispatchEvent(new Event('directory:go-home')),children:'首页'}),
               el('button',{type:'button','aria-label':'上一张',onClick:()=>document.getElementById('work')?.dispatchEvent(new CustomEvent('directory:step',{detail:-1})),children:'←'}),
               el('span',{children:active===visibleCards.length?'全部作品':`${String(active+1).padStart(2,'0')} / 04`}),
               el('button',{type:'button','aria-label':'下一张',onClick:()=>document.getElementById('work')?.dispatchEvent(new CustomEvent('directory:step',{detail:1})),children:'→'})
