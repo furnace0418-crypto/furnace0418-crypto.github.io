@@ -1,0 +1,291 @@
+.directory-expanded{padding-top:110px;padding-bottom:80px;scroll-margin-top:72px}
+.directory-expanded .directory-subtitle{font-family:Gotham,Arial,sans-serif;font-size:11px}
+.index-glass-row{display:flex;align-items:stretch;isolation:isolate;padding:55px 12px 35px;margin:0 auto;max-width:1550px}
+.index-glass-row{max-width:1050px}
+.index-glass-card{position:relative;flex:1 1 0;min-width:0;margin:0 -9px;padding:12px 12px 20px;border:1px solid #ffffff26;border-radius:26px;background:linear-gradient(125deg,#ffffff12,#ffffff05 55%,#c8434915);backdrop-filter:blur(16px);box-shadow:0 8px 32px #0006;color:var(--white);text-align:left;cursor:pointer;transform:rotate(var(--card-tilt));transition:transform .5s cubic-bezier(.34,1.56,.64,1),background .4s,border-color .4s,box-shadow .4s;z-index:calc(6 - var(--card-order));font-family:Gotham,Arial,sans-serif}
+.index-glass-card:hover,.index-glass-card:focus-visible{z-index:10;transform:translateY(-18px) rotate(0) scale(1.035);background:#ffffff14;border-color:#ffffff50;box-shadow:0 20px 45px #0007;outline:2px solid transparent}
+.index-glass-card:focus-visible{outline-color:var(--red)}
+.index-card-window{position:relative;aspect-ratio:1/1.18;border-radius:18px;overflow:hidden;background:#242424}
+.index-card-window img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.index-glass-card:hover img{transform:scale(1.04)}
+.index-card-number{position:absolute;left:14px;top:14px;font-size:12px;padding:6px 9px;background:#15151580;backdrop-filter:blur(8px);border-radius:6px}
+.index-card-copy{padding:20px 9px 0;display:flex;flex-direction:column;min-height:175px}
+.index-card-copy h3{font-size:clamp(13px,1.2vw,19px);line-height:1.35;font-weight:700;margin:0;white-space:pre-line}
+.index-card-copy p{font-size:12px;color:var(--text-dim);line-height:1.7;margin:8px 0 20px}
+.index-card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;border-bottom:2px solid var(--red);padding-bottom:12px;box-shadow:0 6px 9px -9px var(--red);font-size:8px;letter-spacing:.04em;color:var(--text-dim)}
+.index-card-footer>span:last-child{font-size:19px;color:var(--white)}
+.index-glass-hint{text-align:center;font:12px Gotham,Arial,sans-serif;color:var(--text-faint);margin-top:12px}
+.index-card-dialog{position:fixed;inset:0;margin:auto;padding:14px;width:min(520px,calc(100vw - 40px));max-height:85vh;overflow:auto;border:1px solid #ffffff40;border-radius:28px;background:#202020f5;color:var(--white);box-shadow:0 25px 80px #0009;font-family:Gotham,Arial,sans-serif}
+.index-card-dialog::backdrop{background:#080808b3;backdrop-filter:blur(8px)}
+.index-dialog-image{width:100%;height: min(38vh,340px);object-fit:cover;border-radius:18px}
+.index-dialog-close{position:absolute;right:24px;top:24px;width:36px;height:36px;border:1px solid #ffffff40;border-radius:50%;background:#151515c9;color:white;font-size:26px;cursor:pointer}
+.index-dialog-copy{padding:22px 12px 12px}.index-dialog-tag{font-size:10px;letter-spacing:.08em;color:var(--text-dim)}
+.index-dialog-copy h3{font-size:26px;line-height:1.25;white-space:pre-line;margin:14px 0 8px}.index-dialog-copy p{color:var(--text-dim);font-size:14px}
+.index-dialog-enter{margin-top:22px;width:100%;padding:15px;border:1px solid var(--red);border-radius:10px;background:var(--red);color:var(--white);cursor:pointer;font:500 14px Gotham,Arial,sans-serif}
+@media(max-width:960px){.index-glass-row{overflow-x:auto;gap:14px;scroll-snap-type:x proximity;padding:35px 8px}.index-glass-card{flex:0 0 260px;margin:0;scroll-snap-align:center}.index-card-copy h3{font-size:18px}.index-card-copy{min-height:175px}.directory-expanded{padding-top:85px}}
+
+.index-card-copy{padding-left:24px;padding-right:9px}
+@media(max-width:960px){.index-card-copy{padding-left:9px}}
+/* Gentle depth, slower release, and a soft landing instead of a sharp pop. */
+.index-glass-row{perspective:1600px}
+.index-glass-card{transform:perspective(1100px) translateY(0) rotateX(0) rotateY(0) rotateZ(var(--card-tilt));transform-origin:50% 65%;transition:transform .85s cubic-bezier(.22,1,.36,1),background .65s ease,border-color .65s ease,box-shadow .85s ease}
+.index-glass-card:hover,.index-glass-card:focus-visible{transform:perspective(1100px) translateY(-11px) rotateX(var(--pointer-y,0deg)) rotateY(var(--pointer-x,0deg)) rotateZ(0deg) scale(1.018);transition-duration:.55s,.65s,.65s,.85s;box-shadow:0 24px 45px -14px #0009}
+.index-card-window img{transition:transform 1.15s cubic-bezier(.22,1,.36,1)}
+.index-glass-card:hover img{transform:scale(1.025)}
+.index-card-dialog[open]{animation:index-dialog-arrive .58s cubic-bezier(.22,1,.36,1) both;transform-origin:50% 65%}
+.index-card-dialog[open]::backdrop{animation:index-backdrop-arrive .45s ease both}
+.index-card-dialog.is-closing{animation:index-dialog-leave .28s cubic-bezier(.4,0,1,1) both}
+.index-card-dialog.is-closing::backdrop{animation:index-backdrop-leave .28s ease both}
+@keyframes index-dialog-arrive{from{opacity:0;transform:translateY(28px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes index-dialog-leave{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(16px) scale(.97)}}
+@keyframes index-backdrop-arrive{from{opacity:0}to{opacity:1}}
+@keyframes index-backdrop-leave{from{opacity:1}to{opacity:0}}
+
+
+/* Independent spring lift; preserve the staggered resting arrangement. */
+.index-glass-card{transform:none;transform-origin:50% 100%;transition:background .4s ease,border-color .2s ease,box-shadow .4s ease;overflow:hidden}
+.index-glass-card:hover,.index-glass-card:focus-visible{transform:none;border-color:#ffffff59;background:#ffffff14;box-shadow:0 24px 45px -14px #0009}
+.index-glass-card:hover img{transform:none}
+/* Barely perceptible idle drift, independent from the spring hover transform. */
+.index-glass-card{animation:index-idle-drift 8s ease-in-out infinite;animation-delay:calc(var(--card-order) * -1.7s)}
+@keyframes index-idle-drift{0%,100%{translate:0 0}50%{translate:0 -3px}}
+.index-glass-card:hover,.index-glass-card:focus-visible{animation-play-state:paused;border-color:rgba(210,76,86,.36);box-shadow:0 24px 45px -14px #0009,0 0 18px -10px #c8434933}
+.index-glass-card::after{content:'';position:absolute;inset:0;border-radius:inherit;z-index:2;pointer-events:none;background:radial-gradient(circle 180px at var(--glow-x,50%) var(--glow-y,65%),rgba(208,63,77,.19),rgba(200,67,73,.065) 48%,transparent 78%);opacity:0;transition:opacity .65s ease}
+.index-glass-card:hover::after,.index-glass-card:focus-visible::after{opacity:1}
+
+/* Match the PROFILE heading composition: display title, then a quiet Chinese caption. */
+#work.directory-expanded{padding-top:clamp(150px,19vh,230px);padding-bottom:80px}
+#work .directory-title-row{display:flex;flex-direction:column;align-items:flex-start;gap:0}
+#work .directory-mega-title{font-family:"Akira Expanded",sans-serif;font-weight:800;font-size:clamp(40px,5vw,72px);line-height:1.02;letter-spacing:-.01em;color:var(--text);opacity:1}
+#work .directory-subtitle{display:block;margin-top:18px;padding:0;color:var(--text-dim);letter-spacing:.04em}
+#work .directory-subtitle-cn{display:block;font-family:var(--font-cjk);font-size:23px;font-weight:400;line-height:1.4;letter-spacing:.04em;color:var(--text-dim);padding:0;margin:0}
+#work .directory-subtitle-cn::after{display:none}
+#work .directory-subtitle > span:not(.directory-subtitle-cn){display:none}
+#work .index-glass-row{margin-top:clamp(56px,7vh,90px);padding-top:0}
+@media(max-width:600px){#work.directory-expanded{padding-top:110px}#work .directory-mega-title{font-size:clamp(40px,11vw,66px)}#work .directory-subtitle-cn{font-size:20px}#work .index-glass-row{margin-top:42px}}
+
+/* Keep the square Santiago poster and its title fully visible in the portrait card. */
+#work .directory-scene:nth-child(2) .index-card-window{background:#0e0f0f}
+#work .directory-scene:nth-child(2) .index-card-window img{object-fit:contain;object-position:center}
+
+/* Three scroll chapters: one card and its story remain on screen at a time. */
+#work.directory-expanded{padding:0;min-height:0}
+#work .directory-story{position:relative;height:300svh}
+#work .directory-sticky{position:sticky;top:0;height:100svh;margin-bottom:-100svh;overflow:hidden}
+#work .directory-scroll-step{height:100svh;pointer-events:none;opacity:0;font-size:0}
+#work .directory-stage{height:100%;display:flex;flex-direction:column;padding-top:clamp(112px,16vh,155px);padding-bottom:clamp(22px,4vh,44px)}
+#work .directory-title-row{flex:0 0 auto}
+#work .directory-mega-title{font-size:clamp(36px,4.5vw,66px)}
+#work .directory-subtitle{margin-top:10px}
+#work .directory-subtitle-cn{font-size:clamp(18px,1.5vw,23px)}
+#work .directory-scenes{position:relative;flex:1;min-height:0;margin-top:clamp(20px,4vh,44px)}
+#work .directory-scene{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);align-items:center;justify-content:center;gap:clamp(48px,8vw,150px);max-width:1080px;margin:auto;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(24px);filter:blur(5px);transition:opacity .55s ease,transform .65s cubic-bezier(.22,1,.36,1),filter .55s ease,visibility 0s linear .65s}
+#work .directory-scene.is-active{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0);filter:blur(0);transition-delay:0s}
+#work .directory-scene .index-glass-card{width:100%;max-width:420px;margin:0;animation:none;transform:none!important;translate:none;align-self:center;justify-self:center;padding:12px 12px 16px}
+#work .directory-scene .index-glass-card:hover,#work .directory-scene .index-glass-card:focus-visible{transform:translateY(-5px)!important}
+#work .directory-scene .index-card-window{height:clamp(230px,43vh,420px);aspect-ratio:auto}
+#work .directory-scene .index-card-copy{min-height:98px;padding:15px 10px 0}
+#work .directory-scene .index-card-copy h3{font-size:clamp(16px,1.3vw,19px)}
+#work .directory-scene .index-card-copy p{margin:3px 0 10px}
+#work .directory-scene .index-card-footer{padding-bottom:5px}
+#work .directory-scene-copy{max-width:530px}
+#work .directory-scene-count{display:block;margin-bottom:clamp(16px,3vh,35px);color:var(--red);font:700 13px Gotham,Arial,sans-serif;letter-spacing:.14em}
+#work .directory-scene-copy h3{font-family:Gotham,Arial,sans-serif;font-weight:700;font-size:clamp(36px,4vw,64px);line-height:1.1;letter-spacing:-.035em;white-space:pre-line;color:var(--white)}
+#work .directory-scene-cn{margin-top:14px;font-size:clamp(17px,1.6vw,23px);color:var(--white)}
+#work .directory-scene-description{max-width:32em;margin-top:clamp(19px,3vh,36px);color:var(--text-dim);font-size:clamp(15px,1.2vw,18px);line-height:1.9}
+#work .directory-scene-prompt{display:inline-block;margin-top:clamp(19px,3vh,38px);border-bottom:1px solid var(--red);padding-bottom:7px;color:var(--text-dim);font:12px Gotham,Arial,sans-serif;letter-spacing:.04em}
+#work .directory-progress{display:flex;align-items:center;gap:16px;max-width:1080px;width:100%;margin:clamp(14px,2vh,28px) auto 0;color:var(--text-faint);font:11px Gotham,Arial,sans-serif;letter-spacing:.1em}
+#work .directory-progress-track{height:2px;flex:1;background:#ffffff29}
+#work .directory-progress-track>span{display:block;height:100%;background:var(--red);transition:width .55s ease}
+@media(max-width:780px){
+  #work .directory-stage{padding-top:96px;padding-bottom:20px}
+  #work .directory-scenes{margin-top:14px}
+  #work .directory-scene{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;gap:12px}
+  #work .directory-scene .index-glass-card{width:min(65vw,270px);padding:7px 7px 10px}
+  #work .directory-scene .index-card-window{height:clamp(155px,30vh,260px)}
+  #work .directory-scene .index-card-copy{min-height:68px;padding:8px 5px 0}
+  #work .directory-scene .index-card-copy h3{font-size:14px}
+  #work .directory-scene .index-card-copy p{font-size:10px;margin:2px 0 4px}
+  #work .directory-scene .index-card-footer{font-size:7px;padding-bottom:2px}
+  #work .directory-scene-copy{width:100%;text-align:center}
+  #work .directory-scene-count{margin-bottom:5px;font-size:10px}
+  #work .directory-scene-copy h3{font-size:clamp(22px,6vw,36px)}
+  #work .directory-scene-cn{margin-top:4px;font-size:14px}
+  #work .directory-scene-description{margin:8px auto 0;font-size:12px;line-height:1.55}
+  #work .directory-scene-prompt{margin-top:7px;font-size:10px;padding-bottom:4px}
+  #work .directory-progress{margin-top:12px;font-size:9px}
+}
+@media(max-height:620px){#work .directory-stage{padding-top:82px}#work .directory-scene .index-card-window{height:28vh}#work .directory-scene-copy h3{font-size:clamp(21px,3vw,40px)}#work .directory-scene-description{margin-top:8px}}
+@media(prefers-reduced-motion:reduce){#work .directory-scene,#work .directory-progress-track>span{transition:none;filter:none;transform:none}}
+
+/* Pinned editorial composition: the canvas stays still while its content changes. */
+#work.directory-expanded{background-color:#0e0f0f!important;background-image:linear-gradient(rgba(9,10,10,.91),rgba(9,10,10,.91)),url('/images/portfolio-collage-bg.webp')!important;background-size:cover!important;background-position:center!important;background-attachment:fixed!important}
+#work .directory-stage{max-width:1680px;padding-top:clamp(106px,14vh,146px)}
+#work .directory-title-row{display:flex;flex-direction:row;align-items:baseline;gap:15px}
+#work .directory-mega-title{font-family:Gotham,Arial,sans-serif;font-size:clamp(13px,1.2vw,17px);line-height:1.2;letter-spacing:.11em;color:var(--red)}
+#work .directory-subtitle{margin:0}
+#work .directory-subtitle-cn{font-size:clamp(12px,1vw,15px);line-height:1.3;letter-spacing:.08em;color:var(--text-dim)}
+#work .directory-scenes{margin-top:clamp(16px,3vh,34px)}
+#work .directory-scene{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(48px,7vw,145px);max-width:none}
+#work .directory-scene .index-glass-card{grid-column:2;grid-row:1;max-width:510px;padding:13px 13px 17px;justify-self:center}
+#work .directory-scene .index-card-window{height:clamp(270px,52vh,540px)}
+#work .directory-scene-copy{grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:flex-start;max-width:700px}
+#work .directory-scene-count{order:0;font-size:14px;margin-bottom:clamp(20px,4vh,42px)}
+#work .directory-scene-description{order:1;max-width:17em;margin:0;color:var(--white);font-family:var(--font-cjk);font-weight:400;font-size:clamp(28px,2.7vw,47px);line-height:1.48;letter-spacing:-.035em;text-wrap:balance}
+#work .directory-scene-copy h3{order:2;margin-top:clamp(25px,4vh,47px);font-size:clamp(17px,1.4vw,22px);letter-spacing:.02em;color:var(--text-dim)}
+#work .directory-scene-cn{order:3;margin-top:7px;font-size:clamp(13px,1.05vw,16px);color:var(--text-faint)}
+#work .directory-scene-prompt{order:4;margin-top:clamp(22px,4vh,44px);color:var(--white)}
+#work .directory-char{display:inline-block;opacity:0;filter:blur(3px);transform:translateY(.55em);transition:opacity .5s ease,filter .55s ease,transform .55s cubic-bezier(.22,1,.36,1)}
+#work .directory-scene.is-active .directory-char{opacity:1;filter:blur(0);transform:translateY(0);transition-delay:calc(var(--char-index) * 12ms)}
+#work .directory-scene .index-card-window img{transform:scale(1.035);transition:transform .9s cubic-bezier(.22,1,.36,1)}
+#work .directory-scene.is-active .index-card-window img{transform:scale(1)}
+#work .directory-progress{max-width:none;margin-top:clamp(14px,2vh,28px)}
+@media(max-width:780px){
+  #work.directory-expanded{background-attachment:scroll!important}
+  #work .directory-stage{padding-top:92px}
+  #work .directory-title-row{gap:10px}
+  #work .directory-mega-title{font-size:12px}
+  #work .directory-subtitle-cn{font-size:12px}
+  #work .directory-scene{display:flex;flex-direction:column;justify-content:center;gap:22px}
+  #work .directory-scene .index-glass-card{order:2;width:min(75vw,300px);max-width:300px;align-self:center}
+  #work .directory-scene .index-card-window{height:clamp(165px,28vh,260px)}
+  #work .directory-scene-copy{order:1;align-items:flex-start;text-align:left;width:100%;max-width:none}
+  #work .directory-scene-count{margin-bottom:8px;font-size:10px}
+  #work .directory-scene-description{font-size:clamp(20px,5vw,29px);line-height:1.45;max-width:22em}
+  #work .directory-scene-copy h3{margin-top:12px;font-size:13px}
+  #work .directory-scene-cn{margin-top:2px;font-size:11px}
+  #work .directory-scene-prompt{margin-top:9px;font-size:10px}
+}
+@media(max-height:650px) and (min-width:781px){#work .directory-scene .index-card-window{height:38vh}#work .directory-scene-description{font-size:clamp(24px,2.3vw,36px)}}
+@media(prefers-reduced-motion:reduce){#work .directory-char,#work .directory-scene.is-active .directory-char,#work .directory-scene .index-card-window img{transition:none;filter:none;transform:none}#work .directory-scene.is-active .directory-char{opacity:1}}
+
+/* The directory itself is one viewport; wheel input changes chapters, not scroll position. */
+#work.directory-expanded{height:100svh;min-height:100svh;overflow:hidden;scroll-margin-top:0}
+#work .directory-story{height:100%;min-height:0}
+#work .directory-sticky{position:relative;top:auto;height:100%;margin:0}
+#work .directory-scroll-step{display:none}
+
+/* English story leads; the Chinese translation stays quiet beneath it. */
+#work .directory-scene-description{font-family:Georgia,'Times New Roman',serif;font-size:clamp(38px,3.55vw,62px);font-weight:400;line-height:1.16;letter-spacing:-.035em;max-width:15.5em;text-wrap:balance}
+#work .directory-word{display:inline-block;white-space:pre;opacity:0;filter:blur(4px);transform:translateY(.65em);transition:opacity .55s ease,filter .6s ease,transform .65s cubic-bezier(.22,1,.36,1)}
+#work .directory-scene.is-active .directory-word{opacity:1;filter:blur(0);transform:translateY(0);transition-delay:calc(var(--word-index) * 55ms)}
+#work .directory-scene-translation{order:2;margin-top:clamp(20px,3.5vh,34px);max-width:34em;color:var(--text-dim);font-size:clamp(12px,1vw,15px);line-height:1.75;letter-spacing:.025em}
+#work .directory-scene-copy h3{order:3;margin-top:clamp(25px,4vh,42px);font-size:clamp(15px,1.2vw,19px)}
+#work .directory-scene-cn{order:4;font-size:12px}
+#work .directory-scene-prompt{order:5;margin-top:clamp(18px,3vh,30px)}
+
+/* The card arrives through a soft vertical reveal rather than simply crossfading. */
+#work .directory-visual{grid-column:2;grid-row:1;width:100%;max-width:510px;justify-self:center;clip-path:inset(0 0 100% 0 round 26px);opacity:.2;transform:translateY(30px) rotate(-1.5deg) scale(.97);transition:clip-path .82s cubic-bezier(.22,1,.36,1),opacity .6s ease,transform .82s cubic-bezier(.22,1,.36,1)}
+#work .directory-scene.is-active .directory-visual{clip-path:inset(0 0 0 0 round 26px);opacity:1;transform:translateY(0) rotate(0) scale(1);transition-delay:.12s}
+#work .directory-scene .directory-visual .index-glass-card{grid-column:auto;grid-row:auto;width:100%;max-width:none}
+@media(max-width:780px){
+  #work .directory-scene-description{font-size:clamp(26px,6.2vw,37px);line-height:1.18}
+  #work .directory-scene-translation{margin-top:9px;font-size:11px;line-height:1.5}
+  #work .directory-scene-copy h3{margin-top:10px;font-size:12px}
+  #work .directory-scene-cn{font-size:10px}
+  #work .directory-scene-prompt{margin-top:9px}
+  #work .directory-visual{order:2;width:min(75vw,300px);max-width:300px;align-self:center}
+}
+@media(max-height:650px) and (min-width:781px){#work .directory-scene-description{font-size:clamp(31px,2.8vw,46px)}#work .directory-scene-translation{margin-top:12px}#work .directory-scene-copy h3{margin-top:14px}}
+@media(prefers-reduced-motion:reduce){#work .directory-word,#work .directory-scene.is-active .directory-word,#work .directory-visual,#work .directory-scene.is-active .directory-visual{transition:none;filter:none;transform:none}#work .directory-scene.is-active .directory-word{opacity:1}#work .directory-scene.is-active .directory-visual{clip-path:none;opacity:1}}
+
+/* A single overlapping deck: the active card comes forward as the copy changes. */
+#work .directory-scene{opacity:1;visibility:visible;filter:none;transform:none;pointer-events:none;z-index:calc(5 - var(--stack-depth));transition:none}
+#work .directory-scene.is-active{pointer-events:auto}
+#work .directory-scene-copy{opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .42s ease,transform .55s cubic-bezier(.22,1,.36,1),visibility 0s linear .55s}
+#work .directory-scene.is-active .directory-scene-copy{opacity:1;visibility:visible;transform:translateY(0);transition-delay:.08s,.08s,0s}
+#work .directory-scene-description{font-family:'Helvetica Neue',Arial,'Zen Kaku Gothic New',sans-serif;font-weight:500;letter-spacing:-.045em;line-height:1.13}
+#work .directory-visual{clip-path:inset(0 0 0 0 round 26px);opacity:calc(1 - var(--stack-depth) * .22);filter:brightness(calc(1 - var(--stack-depth) * .18));transform:translate(calc(var(--stack-depth) * 25px),calc(var(--stack-depth) * -22px)) rotate(calc(var(--stack-depth) * 2.3deg)) scale(calc(1 - var(--stack-depth) * .015));transition:transform .78s cubic-bezier(.22,1,.36,1),opacity .62s ease,filter .62s ease,clip-path .78s cubic-bezier(.22,1,.36,1)}
+#work .directory-scene.is-active .directory-visual{clip-path:inset(0 0 0 0 round 26px);opacity:1;filter:brightness(1);transform:translate(0,0) rotate(0) scale(1);transition-delay:0s}
+#work .directory-visual .index-glass-card,#work .directory-visual .index-glass-card:hover,#work .directory-visual .index-glass-card:focus-visible{background:#1c1d1d!important;backdrop-filter:none;-webkit-backdrop-filter:none}
+#work .directory-scene:not(.is-active) .index-glass-card{border-color:#ffffff45}
+#work:not(.is-entered) .directory-visual{clip-path:inset(0 0 100% 0 round 26px);opacity:0;transform:translateY(36px) scale(.95)}
+@media(max-width:780px){
+  #work .directory-scene{position:absolute;inset:0}
+  #work .directory-scene-copy{position:absolute;top:0;left:0;right:0}
+  #work .directory-visual{position:absolute;left:50%;bottom:65px;transform:translateX(calc(-50% + var(--stack-depth) * 12px)) translateY(calc(var(--stack-depth) * -12px)) rotate(calc(var(--stack-depth) * 2.3deg)) scale(calc(1 - var(--stack-depth) * .04))}
+  #work .directory-scene.is-active .directory-visual{transform:translateX(-50%) translateY(0) rotate(0) scale(1)}
+  #work:not(.is-entered) .directory-visual{transform:translateX(-50%) translateY(25px) scale(.95)}
+}
+@media(prefers-reduced-motion:reduce){#work .directory-scene-copy,#work .directory-scene.is-active .directory-scene-copy,#work .directory-visual,#work .directory-scene.is-active .directory-visual{transition:none;filter:none}#work .directory-visual{transform:translate(calc(var(--stack-depth) * 18px),calc(var(--stack-depth) * -16px)) scale(calc(1 - var(--stack-depth) * .045))}#work .directory-scene.is-active .directory-visual{transform:none}}
+
+/* Match the portfolio masthead's geometric face; keep the scene free of labels and rules. */
+#work .directory-scene-description{font-family:'Krona One','Zen Kaku Gothic New',sans-serif;font-weight:400;font-size:clamp(27px,2.55vw,43px);line-height:1.38;letter-spacing:-.045em;max-width:18em}
+#work .directory-scene-translation{font-family:var(--font-cjk);font-size:clamp(12px,.95vw,14px)}
+#work .directory-scene-copy h3{margin-top:clamp(28px,4vh,44px)}
+@media(max-width:780px){#work .directory-scene-description{font-size:clamp(20px,5vw,27px);line-height:1.32}#work .directory-scene-translation{font-size:11px}#work .directory-scene-copy h3{margin-top:14px}}
+
+/* The section identity lives with each chapter, not in a separate heading above it. */
+#work .directory-scenes{margin-top:0}
+#work .directory-scene-meta{order:3;align-self:flex-start;display:flex;flex-direction:column;gap:7px;margin-top:clamp(28px,4vh,42px);padding:16px 20px;border:1px solid rgba(238,236,229,.28);border-radius:16px;background:rgba(22,23,23,.72);box-shadow:inset 0 1px rgba(255,255,255,.07)}
+#work .directory-scene-meta h3{order:0;margin:0;font-family:'Akira Expanded','Krona One',sans-serif;font-size:clamp(13px,1.25vw,18px);font-weight:800;line-height:1.2;letter-spacing:-.025em;text-transform:uppercase;color:var(--white)}
+#work .directory-scene-meta .directory-scene-cn{order:1;margin:0;font-family:var(--font-cjk);font-size:clamp(11px,.9vw,13px);font-weight:400;line-height:1.45;letter-spacing:.04em;color:var(--text-dim)}
+@media(max-width:780px){#work .directory-scene-meta{margin-top:18px;padding:11px 14px;border-radius:12px;gap:4px}#work .directory-scene-meta h3{font-size:12px}#work .directory-scene-meta .directory-scene-cn{font-size:10px}}
+
+/* A lighter archive label and a more legible Chinese translation. */
+@font-face{font-family:Gotham;src:url('/fonts/gotham-book.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url('/fonts/gotham-medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
+#work .directory-scene-meta h3{font-family:Gotham,Arial,sans-serif;font-size:clamp(17px,1.55vw,22px);font-weight:500;line-height:1.18;letter-spacing:-.035em;text-transform:none}
+#work .directory-scene-translation{font-size:clamp(15px,1.18vw,18px);line-height:1.7}
+@media(max-width:780px){#work .directory-scene-meta h3{font-size:15px}#work .directory-scene-translation{font-size:13px}}
+
+/* One shared fixed collage eliminates the horizontal join between sections. */
+body{background-color:#0e0f0f!important;background-image:linear-gradient(rgba(10,11,11,.84),rgba(10,11,11,.84)),url('/images/portfolio-collage-bg.webp')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;background-attachment:fixed!important}
+main>section:not(#hero),.contact-finale,.site-footer,#work.directory-expanded{background:transparent!important}
+
+/* The same four card elements move from the deck into their overview slots. */
+#work .directory-scene{width:100%;height:100%;margin:0;grid-template-columns:minmax(0,1fr);justify-content:stretch}
+#work .directory-scene .directory-visual{position:absolute;grid-column:auto;grid-row:auto;top:50%;left:calc(100% - min(510px,52vw) - 16px);width:min(510px,52vw);max-width:none;transform:translateY(calc(-50% - var(--stack-depth) * 22px)) translateX(calc(var(--stack-depth) * 25px)) rotate(calc(var(--stack-depth) * 2.3deg)) scale(calc(1 - var(--stack-depth) * .015));transition:left .65s cubic-bezier(.22,1,.36,1),width .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1),opacity .45s ease,filter .45s ease}
+#work .directory-scene.is-active .directory-visual{transform:translateY(-50%) translateX(0) rotate(0) scale(1)}
+#work .directory-scene .index-glass-card{display:flex;flex-direction:column;height:calc(clamp(230px,43vh,420px) + 125px);transition:height .65s cubic-bezier(.22,1,.36,1),border-color .35s ease,box-shadow .42s ease}
+#work .directory-scene .index-card-window{flex:0 0 auto;width:100%;min-width:0}
+#work .directory-scene .index-card-copy{flex:1;min-height:0;width:100%;min-width:0}
+#work .directory-scene .index-card-window{transition:height .65s cubic-bezier(.22,1,.36,1)}
+#work.is-overview .directory-scene{pointer-events:none;z-index:1}
+#work.is-overview .directory-scene-copy{opacity:0!important;visibility:hidden!important;pointer-events:none!important;transition:opacity .25s ease,visibility 0s linear .25s}
+#work.is-overview .directory-scene .directory-visual,#work.is-overview .directory-scene.is-active .directory-visual{left:calc(3% + var(--card-slot) * 24%);width:22.5%;opacity:1;filter:brightness(1);transform:translateY(-50%) translateX(0) rotate(0) scale(1);clip-path:none;pointer-events:auto}
+#work.is-overview .directory-scene .directory-visual{transition-delay:calc(var(--card-slot) * 45ms)}
+#work.is-overview .directory-scene .index-card-window{height:clamp(220px,39vh,405px)}
+#work.is-overview .directory-scene .index-card-window{transition-delay:calc(var(--card-slot) * 45ms)}
+#work.is-overview .directory-scene .index-card-copy{flex:1;min-height:0;padding:12px 8px 0}
+#work.is-overview .directory-scene .index-card-copy h3{font-size:clamp(14px,1.1vw,17px)}
+#work.is-overview .directory-scene .index-card-copy p{font-size:12px}
+#work.is-overview .directory-scene .index-card-footer{font-size:10px}
+#work.is-overview .directory-scene:hover,#work.is-overview .directory-scene:focus-within{z-index:12}
+#work.is-overview .directory-scene .index-glass-card{display:flex;flex-direction:column;height:calc(clamp(220px,39vh,405px) + 165px);animation:none;transform:none!important;transition:border-color .35s ease,box-shadow .42s ease}
+#work.is-overview .directory-scene .index-glass-card{transition:height .65s cubic-bezier(.22,1,.36,1),border-color .35s ease,box-shadow .42s ease}
+#work.is-overview .directory-scene .index-card-window{flex:0 0 auto;align-self:stretch;width:100%;min-width:0;aspect-ratio:auto}
+#work.is-overview .directory-scene .index-card-window img{display:block;width:100%;height:100%;object-position:center}
+#work.is-overview .directory-scene .index-card-copy{align-self:stretch;width:100%;min-width:0}
+#work.is-overview .directory-scene .index-card-footer{width:100%}
+#work.is-overview .directory-scene .index-glass-card:hover,#work.is-overview .directory-scene .index-glass-card:focus-visible{transform:none!important;border-color:rgba(238,236,229,.62);box-shadow:0 28px 60px #000b,0 0 0 1px rgba(200,67,73,.25)}
+#work.is-overview .directory-scene .directory-visual{animation:directory-overview-drift 5.2s ease-in-out infinite;animation-delay:calc(var(--card-slot) * -.9s);transition:left .65s cubic-bezier(.22,1,.36,1),width .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1),scale .35s cubic-bezier(.22,1,.36,1),opacity .45s ease,filter .45s ease}
+#work.is-overview.is-overview-ready .directory-scene .directory-visual{transform:translateY(calc(-50% - 12px)) translateX(0) rotate(0) scale(1)}
+#work.is-overview .directory-scene .directory-visual:hover,#work.is-overview .directory-scene .directory-visual:focus-within{scale:1.065;animation-play-state:paused}
+@keyframes directory-overview-drift{0%,100%{translate:0 0}50%{translate:0 -13px}}
+#work .directory-video-note{font-size:14px;color:var(--text-dim)}
+@media(min-width:781px) and (max-width:1100px){
+  #work .directory-scene-copy{max-width:calc(100% - min(510px,52vw) - 42px)}
+  #work .directory-scene-description{max-width:100%;font-size:clamp(20px,2.35vw,26px);line-height:1.35}
+}
+@media(max-width:780px){
+  #work .directory-scene .directory-visual{left:50%;top:auto;bottom:65px;width:min(75vw,300px);transform:translateX(calc(-50% + var(--stack-depth) * 12px)) translateY(calc(var(--stack-depth) * -12px)) rotate(calc(var(--stack-depth) * 2.3deg)) scale(calc(1 - var(--stack-depth) * .04))}
+  #work .directory-scene.is-active .directory-visual{transform:translateX(-50%) translateY(0) rotate(0) scale(1)}
+  #work.is-overview .directory-scenes{overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+  #work.is-overview .directory-scenes::-webkit-scrollbar{display:none}
+  #work.is-overview .directory-scene .directory-visual,#work.is-overview .directory-scene.is-active .directory-visual{left:calc(7% + var(--card-slot) * 67%);bottom:50%;top:auto;width:60%;transform:translateY(50%)}
+  #work.is-overview.is-overview-ready .directory-scene .directory-visual{transform:translateY(calc(50% - 12px))}
+  #work.is-overview .directory-scene .index-card-window{height:clamp(200px,39vh,340px)}
+  #work.is-overview .directory-scene .index-glass-card{height:calc(clamp(200px,39vh,340px) + 160px)}
+}
+@media(prefers-reduced-motion:reduce){#work .directory-scene .directory-visual,#work .directory-scene .index-card-window{transition:none!important;animation:none!important}}
+/* Give the expanded card enough room below its image for the title and rounded edge. */
+@media(min-width:781px){
+  #work:not(.is-overview) .directory-scene .index-glass-card{
+    height:calc(clamp(270px,52vh,540px) + 120px);
+  }
+  #work:not(.is-overview) .directory-scene .index-card-copy{
+    flex:0 0 auto;
+    padding-bottom:10px;
+  }
+}

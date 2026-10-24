@@ -1,0 +1,57 @@
+@font-face{font-family:'Akira Expanded';src:url('/fonts/akira-expanded-super-bold.otf') format('opentype');font-weight:800;font-style:normal;font-display:swap}
+.contact-finale{position:relative;isolation:isolate;overflow:hidden;min-height:850px;background:var(--bg);border-top:0;scroll-margin-top:90px;padding:88px 0 30px}
+.contact-finale::before{content:"";position:absolute;inset:0;z-index:-2;background-image:linear-gradient(#e7e2d508 1px,transparent 1px),linear-gradient(90deg,#e7e2d508 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(transparent,#000 25%,#000 80%,transparent)}
+.contact-orbit{position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 50% 15%,#c8434917,transparent 55%)}
+.contact-finale-inner{text-align:center;position:relative}
+.contact-availability{display:inline-flex;align-items:center;gap:12px;border:1px solid #eeece538;background:#eeece508;padding:12px 19px;border-radius:4px;color:var(--text);font:11px var(--font-mono);letter-spacing:.15em}
+.contact-availability i{width:7px;height:7px;background:var(--red);box-shadow:0 0 0 4px #c843491c}
+.contact-thanks{font-family:var(--font-hero);font-size:clamp(70px,10vw,150px);font-weight:400;line-height:1.12;letter-spacing:-.015em;margin:42px 0 28px;color:var(--white)}
+.contact-thanks span{color:var(--red)}
+.contact-message-en{font-size:clamp(17px,1.7vw,24px);color:var(--text-dim);line-height:1.6;margin:0}
+.contact-message-cn{color:var(--text-dim);font-size:15px;letter-spacing:.06em;line-height:1.9;margin:8px auto 0;max-width:650px}
+.contact-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;max-width:1250px;margin:60px auto 0}
+.contact-card{position:relative;display:flex;flex-direction:column;align-items:center;color:var(--text);text-decoration:none;width:100%;padding:51px 22px 23px;background:#e7e2d503;border:1px solid #e7e2d533;border-radius:6px;overflow:hidden;transition:transform .3s ease,border-color .3s ease,background .3s ease,box-shadow .3s ease;cursor:pointer}
+.contact-card::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.contact-card:hover,.contact-card:focus-visible{transform:translateY(-8px);border-color:var(--red);background:#c8434910;box-shadow:0 20px 45px #0003;outline:none}
+.contact-card:hover::after,.contact-card:focus-visible::after{transform:scaleX(1)}
+.contact-card-number{position:absolute;top:17px;left:20px;color:var(--text-faint);font:10px var(--font-mono);letter-spacing:.13em}
+.contact-icon{display:grid;place-items:center;width:78px;height:78px;border:1px solid #e7e2d529;background:#eeece509;border-radius:5px;transition:color .3s,background .3s,border-color .3s,transform .3s;color:var(--white)}
+.contact-icon svg{width:37px;height:37px;overflow:visible}
+.contact-card:hover .contact-icon,.contact-card:focus-visible .contact-icon{color:var(--red);background:#c8434915;border-color:#c8434980;transform:translateY(-3px)}
+.contact-card h3{font:600 22px var(--font-display);margin:24px 0 11px;letter-spacing:-.025em}
+.contact-value{font:13px var(--font-mono);color:var(--text-dim);overflow-wrap:anywhere;line-height:1.8}
+.contact-card-action{width:100%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e7e2d521;margin-top:32px;padding-top:17px;font:9px var(--font-mono);letter-spacing:.16em;color:var(--text-faint);transition:color .3s}
+.contact-card:hover .contact-card-action,.contact-card:focus-visible .contact-card-action{color:var(--red)}
+.contact-card-action>span{font-size:17px;transition:transform .3s}.contact-card:hover .contact-card-action>span{transform:translate(2px,-2px)}
+.envelope-letter,.phone-rings{display:none}
+.contact-notice{min-height:30px;margin:18px 0 0;font-size:13px;color:var(--text)}
+.contact-endnote{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--glass-border);padding-top:22px;font:9px var(--font-mono);letter-spacing:.12em;color:var(--text-faint)}
+.contact-endnote a{color:var(--text-dim)}.contact-endnote a:hover{color:var(--red)}
+.contact-thanks{font-family:'Akira Expanded',Arial,sans-serif;font-weight:800;font-size:clamp(48px,8.5vw,136px);line-height:1.05;letter-spacing:-.045em;transform:scaleY(.92);margin:42px 0 22px;white-space:nowrap}
+.contact-float{display:flex;animation:contact-float 6s ease-in-out infinite}
+.contact-float:nth-child(2){animation-duration:5s;animation-delay:.5s}
+.contact-float:nth-child(3){animation-duration:4s;animation-delay:1s}
+@keyframes contact-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+.contact-card{height:100%;transition:transform .5s ease,border-color .5s ease,box-shadow .5s ease,background .5s ease}
+.contact-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,#c843491a);opacity:0;transition:opacity .5s ease;pointer-events:none}
+.contact-card>*{position:relative;z-index:1}.contact-card .contact-card-number{position:absolute}
+.contact-card::after{display:none}
+.contact-card:is(:hover,:focus-visible){transform:translateY(-16px);border-color:#c8434966;box-shadow:0 20px 40px -10px #c8434926;background:#e7e2d503}
+.contact-card:is(:hover,:focus-visible)::before{opacity:1}
+.contact-icon{transition:transform .5s ease,color .5s ease,background .5s ease,border-color .5s ease}
+.contact-card:is(:hover,:focus-visible) .contact-icon{transform:scale(1.1);color:var(--red)}
+.contact-value{transition:color .5s ease}.contact-card:is(:hover,:focus-visible) .contact-value{color:#db767b}
+.contact-card-action{opacity:0;transition:opacity .3s ease,color .5s ease}.contact-card:is(:hover,:focus-visible) .contact-card-action{opacity:1}
+@media(max-width:700px){.contact-finale{padding:64px 0 28px;min-height:0}.contact-thanks{font-size:clamp(65px,15vw,100px);margin:34px 0 22px}.contact-cards{grid-template-columns:1fr;gap:18px;margin-top:36px;max-width:430px}.contact-card{padding-top:42px}.contact-message-cn{font-size:13px}.contact-endnote{flex-wrap:wrap;justify-content:center}.contact-endnote>span:nth-child(2){display:none}.contact-availability{font-size:9px;letter-spacing:.1em}}
+@media(max-width:700px){.contact-thanks{font-size:clamp(28px,8.4vw,60px);letter-spacing:-.06em;transform:scaleY(.92)}.contact-cards{gap:30px}}
+
+
+@font-face{font-family:Gotham;src:url('/fonts/gotham-book.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url('/fonts/gotham-medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
+.contact-finale{font-family:Gotham,var(--font-body),sans-serif}
+.contact-availability,.contact-message-en,.contact-message-cn,.contact-value,.contact-card-action,.contact-endnote,.contact-notice{font-family:Gotham,Arial,sans-serif}
+.contact-value{font-size:clamp(16px,1.4vw,20px);font-weight:500;line-height:1.7;letter-spacing:0}
+.contact-icon svg{width:40px;height:40px}
+
+/* Fade both decorative layers in gently from the shared background. */
+.contact-finale::before,.contact-orbit{-webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.12) 12%,#000 35%,#000 75%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.12) 12%,#000 35%,#000 75%,transparent 100%)}

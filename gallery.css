@@ -1,0 +1,41 @@
+#illustration .section-title .cjk{font-family:var(--font-cjk);font-size:23px;font-weight:400;line-height:1.4;letter-spacing:.04em;color:var(--text-dim);margin-top:8px}
+.visual-filters{display:flex;align-items:center;flex-wrap:wrap;gap:7px;width:fit-content;max-width:100%;margin-top:30px;padding:6px;border:1px solid rgba(255,255,255,.17);border-radius:14px;background:rgba(19,20,21,.8);box-shadow:0 10px 30px rgba(0,0,0,.2);backdrop-filter:blur(14px)}
+.visual-filter-label{padding:0 15px 0 12px;color:var(--text-dim);font:600 12px/1 var(--font-cjk),sans-serif;letter-spacing:.12em;white-space:nowrap}
+.visual-filter{position:relative;min-height:40px;padding:0 17px;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--text-dim);font:600 13px/1.2 var(--font-cjk),sans-serif;letter-spacing:.04em;white-space:nowrap;cursor:pointer;transition:background .22s ease,color .22s ease,border-color .22s ease}
+.visual-filter:hover{background:rgba(255,255,255,.08);color:var(--text)}
+.visual-filter.is-active{border-color:rgba(211,71,83,.5);background:rgba(200,63,75,.2);color:#fff}
+.visual-filter:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+#illustration .illustration-stage{margin-top:18px}
+.masonry-caption-category{display:block;margin-bottom:6px;color:var(--text-dim);font:600 12px/1.35 var(--font-cjk),sans-serif;letter-spacing:.05em;text-transform:none}
+.illustration-main-caption-category{display:inline-flex;align-items:center;align-self:flex-start;padding:7px 11px;border:1px solid rgba(211,71,83,.45);border-radius:7px;background:rgba(200,63,75,.17);color:#fff;font:700 12px/1.25 var(--font-cjk),sans-serif;letter-spacing:.04em;text-transform:none}
+@media(max-width:640px){.visual-filters{width:100%;gap:4px;margin-top:22px}.visual-filter-label{width:100%;padding:8px 10px 4px}.visual-filter{flex:1;min-height:38px;padding:0 7px;font-size:11px}}
+
+/* Visual works use the same full-screen reading language as the project archive. */
+.illustration-detail{position:fixed;inset:0;z-index:1000;display:flex;flex-direction:column;gap:0;padding:clamp(14px,2vw,32px);background:rgba(5,5,6,.97);backdrop-filter:blur(12px);box-sizing:border-box}
+.illustration-viewer-header{height:72px;flex:0 0 auto;display:flex;align-items:center;gap:20px;padding:0 4px 12px;box-sizing:border-box}
+.illustration-viewer-title{min-width:0}
+.illustration-viewer-title h3{margin:0;color:var(--text);font:800 clamp(18px,1.8vw,30px)/1.1 'Akira Expanded',var(--font-display),sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.illustration-viewer-title>span{display:block;margin-top:4px;color:var(--text-dim);font:500 14px/1.2 var(--font-cjk),sans-serif}
+.illustration-viewer-count{margin-left:auto;color:var(--text-dim);white-space:nowrap}
+.illustration-viewer-close{width:44px;height:44px;flex:0 0 auto;border:1px solid #ffffff35;border-radius:50%;background:#202020;color:var(--text);font:300 30px/1 sans-serif;cursor:pointer}
+.illustration-viewer-close:hover{border-color:var(--red);background:#372327}
+.illustration-viewer-close:focus-visible,.illustration-viewer-thumb:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.illustration-viewer-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) clamp(210px,19vw,310px);gap:14px}
+.illustration-main{min-height:0;padding:18px;border:1px solid #ffffff24;border-radius:7px;background:#0c0c0e}
+.illustration-main>img{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}
+.illustration-main-caption{left:28px;bottom:26px;max-width:calc(100% - 56px)}
+.illustration-viewer-rail{min-height:0;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:14px;padding:14px;border:0;border-radius:7px;background:#111214;scrollbar-width:thin;scrollbar-color:var(--red) #1b1b1d}
+.illustration-viewer-rail-label{margin:3px 2px 2px;color:var(--text-dim);letter-spacing:.14em}
+.illustration-viewer-rail-label--others{margin-top:14px;padding-top:6px}
+.illustration-viewer-thumb{flex:0 0 auto;display:block;width:100%;padding:8px;border:0;border-radius:10px;background:transparent;color:var(--text);text-align:left;cursor:pointer;transition:background .2s}
+.illustration-viewer-thumb:hover{background:rgba(255,255,255,.06)}
+.illustration-viewer-thumb.is-active{background:rgba(200,63,75,.16)}
+.illustration-viewer-thumb img{display:block;width:100%;height:clamp(100px,13vw,175px);object-fit:contain;background:transparent;border-radius:6px}
+.illustration-viewer-thumb span{display:block;padding:8px 3px 2px;font:600 12px/1.35 var(--font-cjk),sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.illustration-detail{background:linear-gradient(135deg,rgba(13,14,17,.86),rgba(21,22,25,.8));-webkit-backdrop-filter:blur(24px) saturate(.8);backdrop-filter:blur(24px) saturate(.8)}
+.illustration-main{isolation:isolate;background:rgba(23,24,27,.38);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.illustration-main::before{content:"";position:absolute;inset:-18px;z-index:-1;background-image:linear-gradient(rgba(8,9,12,.34),rgba(8,9,12,.48)),var(--artwork-bg);background-position:center;background-size:cover;filter:blur(11px) saturate(.9);transform:scale(1.03);pointer-events:none}
+.illustration-main>img{position:relative;z-index:1}
+.illustration-main-caption{z-index:2}
+.illustration-viewer-rail{background:rgba(29,30,33,.58);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+@media(max-width:700px){.illustration-detail{padding:10px}.illustration-viewer-header{height:64px;gap:10px}.illustration-viewer-title h3{font-size:16px}.illustration-viewer-title>span{font-size:11px}.illustration-viewer-count{font-size:10px}.illustration-viewer-close{width:36px;height:36px;font-size:24px}.illustration-viewer-body{display:flex;flex-direction:column;gap:8px}.illustration-main{flex:1;min-height:0;padding:8px}.illustration-main-caption{left:12px;bottom:12px}.illustration-viewer-rail{flex:0 0 132px;flex-direction:row;overflow-x:auto;overflow-y:hidden;align-items:flex-start;padding:8px}.illustration-viewer-rail-label{display:none}.illustration-viewer-thumb{width:100px}.illustration-viewer-thumb img{height:86px}}
