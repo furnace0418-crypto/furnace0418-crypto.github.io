@@ -666,9 +666,9 @@ html.title-reveal-enabled :is(.directory-mega-title,.profile-title,.section-titl
 /* Project archive: touch users browse covers by swiping, then tap to open. */
 @media (hover:none), (max-width:780px){
   #ip .ip-accordion-wrap{overflow:visible}
-  #ip .ip-accordion{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:stretch;gap:12px!important;width:100%;height:min(68svh,540px)!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;touch-action:pan-x;scrollbar-width:none;padding:0 max(0px,calc((100% - min(82vw,430px))/2)) 8px;box-sizing:border-box}
+  #ip .ip-accordion{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:stretch;gap:12px!important;width:100%;height:min(68svh,540px)!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;touch-action:pan-x;scrollbar-width:none;padding:0 max(0px,calc((100% - min(74vw,430px))/2)) 8px;box-sizing:border-box}
   #ip .ip-accordion::-webkit-scrollbar{display:none}
-  #ip .ip-accordion .ag-panel{position:relative!important;display:block!important;flex:0 0 min(82vw,430px)!important;width:min(82vw,430px)!important;min-width:min(82vw,430px)!important;height:100%!important;scroll-snap-align:center;transform:none!important;filter:none!important;opacity:1!important;overflow:hidden;touch-action:pan-x;cursor:pointer}
+  #ip .ip-accordion .ag-panel{position:relative!important;display:block!important;flex:0 0 min(74vw,430px)!important;width:min(74vw,430px)!important;min-width:min(74vw,430px)!important;height:100%!important;scroll-snap-align:center;transform:none!important;filter:none!important;opacity:1!important;overflow:hidden;touch-action:pan-x;cursor:pointer}
   #ip .ip-accordion .ag-panel__frame{position:absolute;inset:0;display:block;width:100%;height:100%}
   #ip .ip-accordion .ag-panel__media{position:absolute!important;inset:0!important;left:0!important;top:0!important;width:100%!important;height:100%!important;transform:none!important;filter:none!important}
   #ip .ip-accordion .ag-panel__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:none!important;filter:none!important;opacity:1!important;mask-image:none!important;-webkit-mask-image:none!important}
@@ -680,5 +680,18 @@ html.title-reveal-enabled :is(.directory-mega-title,.profile-title,.section-titl
   #ip .ip-accordion .project-cover-description{font-size:11px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   #ip .ip-accordion .project-cover-arrow{width:38px;height:38px;top:12px;right:12px;transform:none!important}
   #ip .ip-accordion .ag-panel__spine-label,#ip .ip-accordion .ag-panel__label{display:none!important}
+}
+
+/* Mobile project covers form one continuous rail. The end covers repeat at
+   the opposite edge, while the active cover carries the visual emphasis. */
+@media (hover:none), (max-width:780px){
+  #ip .ip-accordion{scroll-behavior:auto;scroll-snap-stop:always}
+  #ip .ip-accordion .ag-panel{scale:.94;opacity:.68;transition:scale .48s cubic-bezier(.22,1,.36,1),opacity .48s ease,box-shadow .48s ease;will-change:scale}
+  #ip .ip-accordion .ag-panel.is-loop-center{scale:1;opacity:1;box-shadow:0 18px 44px -22px rgba(0,0,0,.85)}
+  #ip .ip-accordion .ag-panel__media img{transition:scale .65s cubic-bezier(.22,1,.36,1)!important}
+  #ip .ip-accordion .ag-panel.is-loop-center .ag-panel__media img{scale:1.015}
+}
+@media (prefers-reduced-motion:reduce){
+  #ip .ip-accordion .ag-panel,#ip .ip-accordion .ag-panel__media img{transition:none!important}
 }
 

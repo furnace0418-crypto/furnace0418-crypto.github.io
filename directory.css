@@ -434,3 +434,4 @@ main>section:not(#hero),.contact-finale,.site-footer,#work.directory-expanded{ba
   #work .directory-scene .directory-visual,#work .directory-scene.is-active .directory-visual{height:min(41svh,360px)!important}
 }
 
+@media (hover:none), (max-width:780px){#work.directory-expanded{display:none!important}}

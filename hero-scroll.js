@@ -59,6 +59,10 @@
 
   function paint() {
     paintQueued = false;
+    if (touchLayout()) {
+      hero.style.opacity = "1";
+      return;
+    }
     if (reducedMotion.matches) {
       hero.style.opacity = "1";
       return;
@@ -80,19 +84,7 @@
     const top = work.offsetTop;
     const bottom = work.offsetTop + work.offsetHeight;
     if (touchLayout()) {
-      if (directoryLocked) {
-        if (Math.abs(current - top) > 2) scrollTo({ top, behavior: 'instant' });
-        lastScrollPosition = top;
-        requestPaint();
-        return;
-      }
-      if (performance.now() > navigationUntil &&
-          ((lastScrollPosition < top - 4 && current >= top - 4) ||
-           (lastScrollPosition >= bottom - 4 && current < bottom - 4))) {
-        work.dispatchEvent(new Event(lastScrollPosition >= bottom - 4 ? 'directory:enter-from-below' : 'directory:enter-from-above'));
-        lockDirectory();
-        return;
-      }
+      unlockDirectory();
       lastScrollPosition = current;
       requestPaint();
       return;
@@ -242,7 +234,7 @@
       touchStartScroll = scrollY;
     }, { passive: true });
     addEventListener('touchmove', event => {
-      if (!touchLayout() || touchStartY === null || performance.now() < navigationUntil) return;
+      if (touchLayout() || touchStartY === null || performance.now() < navigationUntil) return;
       if (directoryLocked) {
         if (!event.target.closest('dialog[open]')) event.preventDefault();
         return;
@@ -255,6 +247,12 @@
       }
     }, { passive: false });
     addEventListener("click", event => {
+      if (touchLayout() && event.target.closest?.('a[href="#work"]')) {
+        event.preventDefault();
+        history.replaceState(history.state, '', `${location.pathname}${location.search}#hero`);
+        scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
       if (event.target.closest?.('a[href="#hero"]')) authorizedHomeTurn = true;
       if (event.target.closest?.('a[href^="#"]:not([href="#work"])')) {
         unlockDirectory();
