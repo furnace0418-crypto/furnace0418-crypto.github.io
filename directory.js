@@ -25,7 +25,9 @@ export function createDirectory(React, jsx, cards, motion) {
     React.useEffect(()=>{
       const section=document.getElementById('work');
       if(!section)return;
-      const observer=new IntersectionObserver(entries=>setEntered(entries[0]?.intersectionRatio>=.82),{threshold:[0,.82,1]});
+      const observer=new IntersectionObserver(entries=>{
+        if(entries.some(entry=>entry.isIntersecting&&entry.intersectionRatio>=.18))setEntered(true);
+      },{threshold:[0,.18,1]});
       observer.observe(section);
       return()=>observer.disconnect();
     },[]);
@@ -37,10 +39,7 @@ export function createDirectory(React, jsx, cards, motion) {
       section.dataset.chapterChangedAt=String(performance.now());
       let lastSwitch=0,accumulated=0,touchY=null,overviewHold=0;
       const overviewIndex=visibleCards.length;
-      const inDirectory=()=>{
-        const rect=section.getBoundingClientRect();
-        return rect.top<=80&&rect.bottom>=window.innerHeight-80;
-      };
+      const inDirectory=()=>Math.abs(section.getBoundingClientRect().top)<=90;
       const advance=direction=>{
         const next=Math.max(0,Math.min(overviewIndex,activeRef.current+direction));
         if(next===activeRef.current)return false;
@@ -80,6 +79,7 @@ export function createDirectory(React, jsx, cards, motion) {
         if(direction&&advance(direction))event.preventDefault();
       };
       const touchStart=event=>{if(inDirectory())touchY=event.touches[0]?.clientY??null};
+      const touchMove=event=>{if(touchY!==null&&inDirectory()&&activeRef.current<overviewIndex)event.preventDefault()};
       const touchEnd=event=>{
         if(touchY===null||!inDirectory())return;
         const distance=touchY-(event.changedTouches[0]?.clientY??touchY);
@@ -113,8 +113,9 @@ export function createDirectory(React, jsx, cards, motion) {
       section.addEventListener('directory:enter-from-below',enterFromBelow);
       section.addEventListener('directory:enter-from-above',enterFromAbove);
       section.addEventListener('touchstart',touchStart,{passive:true});
+      section.addEventListener('touchmove',touchMove,{passive:false});
       section.addEventListener('touchend',touchEnd,{passive:false});
-      return()=>{removeEventListener('wheel',wheel,true);removeEventListener('keydown',key);section.removeEventListener('directory:enter-from-below',enterFromBelow);section.removeEventListener('directory:enter-from-above',enterFromAbove);section.removeEventListener('touchstart',touchStart);section.removeEventListener('touchend',touchEnd)};
+      return()=>{removeEventListener('wheel',wheel,true);removeEventListener('keydown',key);section.removeEventListener('directory:enter-from-below',enterFromBelow);section.removeEventListener('directory:enter-from-above',enterFromAbove);section.removeEventListener('touchstart',touchStart);section.removeEventListener('touchmove',touchMove);section.removeEventListener('touchend',touchEnd)};
     },[]);
 
     const dialog=React.useRef(null);

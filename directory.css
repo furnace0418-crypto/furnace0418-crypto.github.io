@@ -289,3 +289,76 @@ main>section:not(#hero),.contact-finale,.site-footer,#work.directory-expanded{ba
     padding-bottom:10px;
   }
 }
+/* Compact, stable card layout for touch screens and landscape tablets. */
+@media (hover:none), (max-width:1100px) and (max-height:700px) {
+  body{background-attachment:scroll!important}
+  #work.directory-expanded{background-attachment:scroll!important}
+  #work .directory-visual,
+  #work .directory-scene.is-active .directory-visual,
+  #work .directory-scene-copy,
+  #work .directory-word,
+  #work .directory-scene .index-card-window img{
+    filter:none!important;
+    clip-path:none!important;
+    animation:none!important;
+    transition:none!important;
+  }
+  #work .directory-word{opacity:1!important;transform:none!important}
+  #work .directory-scene:not(.is-active) .directory-visual{visibility:hidden!important;opacity:0!important;pointer-events:none!important}
+  #work .directory-scene.is-active .directory-visual{visibility:visible!important;opacity:1!important}
+  #work .directory-scene .index-glass-card,
+  #work .directory-scene .index-card-window,
+  #work.is-overview .directory-scene .index-glass-card,
+  #work.is-overview .directory-scene .index-card-window{
+    transition:none!important;
+  }
+  #work .directory-scene .index-glass-card:hover{transform:none!important}
+}
+@media (hover:none) and (orientation:landscape), (max-width:1100px) and (max-height:700px) {
+  #work .directory-stage{padding-top:68px!important;padding-bottom:12px!important}
+  #work .directory-scenes{margin-top:6px!important}
+  #work .directory-scene:not(.is-overview){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:18px;align-items:center}
+  #work .directory-scene-copy{position:relative!important;grid-column:1;grid-row:1;max-width:none;align-items:flex-start;text-align:left}
+  #work .directory-scene-description{font-size:clamp(17px,2.4vw,25px)!important;line-height:1.25!important}
+  #work .directory-scene-translation{font-size:11px!important;margin-top:9px!important}
+  #work .directory-scene-meta{margin-top:12px!important;padding:9px 11px!important}
+  #work .directory-scene .directory-visual,
+  #work .directory-scene.is-active .directory-visual{
+    position:relative!important;top:auto!important;left:auto!important;bottom:auto!important;
+    grid-column:2;grid-row:1;width:min(100%,360px)!important;height:min(68svh,390px);
+    transform:none!important;justify-self:center;
+  }
+  #work .directory-scene .index-glass-card,
+  #work.is-overview .directory-scene .index-glass-card{width:100%!important;height:100%!important;padding:7px!important}
+  #work .directory-scene .index-card-window,
+  #work.is-overview .directory-scene .index-card-window{height:calc(100% - 72px)!important}
+  #work .directory-scene .index-card-copy{height:72px!important;padding:7px 5px 0!important}
+  #work.is-overview .directory-scene .directory-visual,
+  #work.is-overview .directory-scene.is-active .directory-visual{
+    position:absolute!important;top:50%!important;left:calc(3% + var(--card-slot) * 24%)!important;
+    width:22.5%!important;height:min(65svh,370px);transform:translateY(-50%)!important;
+  }
+}
+@media (hover:none) and (orientation:portrait), (max-width:780px) and (min-height:701px) {
+  #work .directory-stage{padding-top:72px!important;padding-bottom:12px!important}
+  #work .directory-scene{display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+  #work .directory-scene-copy{position:relative!important;flex:0 0 auto}
+  #work .directory-scene-description{font-size:clamp(18px,5vw,26px)!important;line-height:1.28!important}
+  #work .directory-scene-translation{font-size:11px!important;margin-top:7px!important}
+  #work .directory-scene-meta{margin-top:10px!important;padding:8px 11px!important}
+  #work .directory-scene .directory-visual,
+  #work .directory-scene.is-active .directory-visual{
+    position:relative!important;top:auto!important;left:auto!important;bottom:auto!important;
+    width:min(74vw,320px)!important;height:min(49svh,420px);transform:none!important;
+  }
+  #work .directory-scene .index-glass-card{width:100%!important;height:100%!important;padding:7px!important}
+  #work .directory-scene .index-card-window{height:calc(100% - 68px)!important}
+  #work .directory-scene .index-card-copy{height:68px!important;padding:7px 5px 0!important}
+  #work.is-overview .directory-scene .directory-visual,
+  #work.is-overview .directory-scene.is-active .directory-visual{
+    position:absolute!important;top:auto!important;bottom:50%!important;
+    left:calc(7% + var(--card-slot) * 67%)!important;width:60%!important;
+    transform:translateY(50%)!important;
+  }
+}
+

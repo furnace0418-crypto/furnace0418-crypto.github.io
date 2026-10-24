@@ -1,6 +1,6 @@
-﻿<!doctype html>
-<script defer src="/hero-scroll.js?v=11"></script>
-<script defer src="/startup.js?v=1"></script>
+<!doctype html>
+<script defer src="/hero-scroll.js?v=12"></script>
+<script defer src="/startup.js?v=2"></script>
 <html lang="zh-CN"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="preload" as="image" href="/images/index/hero-poster.webp" fetchpriority="high">
-    <link rel="preload" as="image" href="/images/index/profile-furnace.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/index/cards/profile-furnace-card.webp" fetchpriority="high">
     <script>document.documentElement.classList.add('is-loading')</script>
     <style>
       html.is-loading,html.is-loading body{overflow:hidden!important}
@@ -24,6 +24,8 @@
       .startup-meta{display:flex;justify-content:space-between;margin-top:20px;font-size:11px;letter-spacing:.18em;color:#aaa6a1}
       .startup-track{height:2px;margin-top:18px;background:#414042;overflow:hidden}
       .startup-track::after{content:"";display:block;width:36%;height:100%;background:#c84349;animation:startup-progress 1.4s ease-in-out infinite alternate}
+      .startup-retry{margin-top:24px;padding:11px 18px;border:1px solid #a83d43;border-radius:8px;background:#30191b;color:#f1eee8;font:600 13px Arial,sans-serif}
+      .startup-retry[hidden]{display:none}
       @keyframes startup-progress{from{transform:translateX(-100%)}to{transform:translateX(280%)}}
       @media(prefers-reduced-motion:reduce){.startup-track::after{animation:none;width:100%}}
     </style>
@@ -34,7 +36,7 @@
       - Zen Kaku Gothic New -> 涓枃姝ｆ枃,鏃ョ郴榛戜綋璐ㄦ劅
       - Zen Old Mincho      -> 灏戦噺涓枃鐐圭紑鏍囬,鏃ョ郴鏄庢湞浣撹川鎰?    -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Caveat:wght@600;700&amp;family=Unbounded:wght@400;600;800;900&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;family=Zen+Old+Mincho:wght@400;600;900&amp;display=swap" rel="stylesheet">
-    <script src="/vendor/hls.min.js"></script><script src="/video-hls.js?v=20261024-release" defer></script><script type="module" crossorigin="" src="/assets/index-gFwxnGoH.js?v=20261025-hero-fast"></script>
+    <script src="/vendor/hls.min.js"></script><script src="/video-hls.js?v=20261024-release" defer></script><script type="module" crossorigin="" src="/assets/index-gFwxnGoH.js?v=20261025-mobile-ready"></script>
     <link rel="stylesheet" crossorigin="" href="/assets/theme-red.css?v=20261025-webp">
-<link rel="stylesheet" href="/custom.css?v=20261025-webp"><link rel="stylesheet" href="/contact.css"><link rel="stylesheet" href="/directory.css?v=20261025-webp"><link rel="stylesheet" href="/project-viewer.css?v=20261024-zoom-out"><link rel="stylesheet" href="/gallery.css?v=20261024-rail-cleanup"></head><body><div id="site-startup" role="status" aria-live="polite"><div class="startup-inner"><div class="startup-name">FURNACE.</div><div class="startup-meta"><span>PORTFOLIO / 2026</span><span>正在准备作品</span></div><div class="startup-track" aria-hidden="true"></div></div></div><div id="root"></div><script src="/title-reveal.js?v=4" defer></script><script src="/project-viewer-texture.js?v=20261024-glass-refine" defer></script></body></html>
+<link rel="stylesheet" href="/custom.css?v=20261025-mobile"><link rel="stylesheet" href="/contact.css"><link rel="stylesheet" href="/directory.css?v=20261025-mobile"><link rel="stylesheet" href="/project-viewer.css?v=20261024-zoom-out"><link rel="stylesheet" href="/gallery.css?v=20261024-rail-cleanup"></head><body><div id="site-startup" role="status" aria-live="polite"><div class="startup-inner"><div class="startup-name">FURNACE.</div><div class="startup-meta"><span>PORTFOLIO / 2026</span><span class="startup-status">正在准备作品</span></div><div class="startup-track" aria-hidden="true"></div><button class="startup-retry" type="button" hidden>重新加载</button></div></div><div id="root"></div><script src="/title-reveal.js?v=4" defer></script><script src="/project-viewer-texture.js?v=20261024-glass-refine" defer></script></body></html>
 

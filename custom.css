@@ -650,3 +650,12 @@ html.title-reveal-enabled :is(.directory-mega-title,.profile-title,.section-titl
   overflow-wrap:anywhere;
   text-wrap:balance;
 }
+
+/* Mobile browsers repaint fixed blur/noise layers on every touch frame. */
+@media (hover:none), (max-width:1100px) and (max-height:700px) {
+  body::before{display:none!important}
+  .nav-bar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(12,13,14,.96)!important}
+  #work .index-glass-card,#work .index-card-number{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  #work .directory-scene .index-glass-card{box-shadow:0 8px 20px #0007!important}
+}
+
