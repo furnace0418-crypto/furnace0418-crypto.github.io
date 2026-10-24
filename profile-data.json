@@ -1,0 +1,225 @@
+{
+  "avatarCard": "/images/furnace-profile-card.webp",
+  "nameEn": "FURNACE",
+  "nameCn": "罗俊希",
+  "introEn": "罗俊希 / FURNACE，专注三维设计与视觉设计。具备品牌视觉、IP 视觉延展及从 2D 概念到 3D 资产落地的能力，结合 AIGC 进行概念探索、素材生成和视频创作，关注视觉表达与实际应用。",
+  "contacts": [
+    {
+      "label": "TEL",
+      "value": "18664739327"
+    },
+    {
+      "label": "MAIL",
+      "value": "2634889086@qq.com"
+    }
+  ],
+  "timeline": [
+    {
+      "year": "2026.03 — 2026.06",
+      "company": "广州艺想文化创意有限公司",
+      "role": "IP 3D设计师",
+      "roleEn": "IP / 3D DESIGNER",
+      "keyProjects": [
+        "负责品牌 IP 形象从 2D 概念到 3D 资产的落地，包括高低模建模、UV 拆分、材质贴图及渲染输出，确保形象与品牌视觉调性统一。",
+        "与插画、品牌策划及运营团队协作，参与打样及落地跟进，根据注塑、涂装等生产工艺优化模型细节。",
+        "参与 IP 造型延展，为盲盒、潮玩、周边、短视频及品牌展示等应用场景适配 3D 内容。"
+      ],
+      "keywords": [
+        "IP DESIGN",
+        "3D",
+        "PRODUCTION"
+      ],
+      "desc": "负责品牌 IP 形象从 2D 概念到 3D 资产的落地，包括高低模建模、UV 拆分、材质贴图及渲染输出，确保形象与品牌视觉调性统一。 与插画、品牌策划及运营团队协作，参与打样及落地跟进，根据注塑、涂装等生产工艺优化模型细节。 参与 IP 造型延展，为盲盒、潮玩、周边、短视频及品牌展示等应用场景适配 3D 内容。"
+    },
+    {
+      "year": "2024.07 — 2024.08",
+      "company": "广东艺都科技有限公司",
+      "role": "全媒体运营 / 视频拍摄剪辑实习生",
+      "roleEn": "VIDEO / MEDIA OPERATIONS INTERN",
+      "keyProjects": [
+        "负责公司内部员工技能培训及对外宣传所需的社媒平台视频拍摄与剪辑。",
+        "参与社媒体运营项目的规划与搭建。"
+      ],
+      "keywords": [
+        "VIDEO",
+        "EDITING",
+        "SOCIAL MEDIA"
+      ],
+      "desc": "负责公司内部员工技能培训及对外宣传所需的社媒平台视频拍摄与剪辑。 参与社媒体运营项目的规划与搭建。"
+    },
+    {
+      "year": "2023.06 — 2023.08",
+      "company": "广州乘果留学咨询服务有限责任公司",
+      "role": "平面设计实习生",
+      "roleEn": "GRAPHIC DESIGN INTERN",
+      "keyProjects": [
+        "负责留学咨询及英文培训业务的线上线下视觉设计。",
+        "设计招生海报、课程画册、宣讲会 PPT、易拉宝及社交媒体宣传物料。"
+      ],
+      "keywords": [
+        "GRAPHIC DESIGN",
+        "LAYOUT",
+        "VISUAL"
+      ],
+      "desc": "负责留学咨询及英文培训业务的线上线下视觉设计。 设计招生海报、课程画册、宣讲会 PPT、易拉宝及社交媒体宣传物料。"
+    },
+    {
+      "year": "2023.07 — 2024.06",
+      "company": "艺术设计与传媒学院传媒中心",
+      "role": "视觉映像部部长（在校）",
+      "roleEn": "CAMPUS / VISUAL MEDIA",
+      "keyProjects": [
+        "负责中心各项活动拍摄与视频制作，以及海报设计等视觉内容呈现。",
+        "2023—2024 年度，个人获评广州新华学院艺术设计与传媒学院“十佳记者”。",
+        "任职期间，所在视觉映像部获学院“突出贡献奖”（集体荣誉）。"
+      ],
+      "keywords": [
+        "PHOTOGRAPHY",
+        "VIDEO",
+        "DESIGN"
+      ],
+      "desc": "负责中心各项活动拍摄与视频制作，以及海报设计等视觉内容呈现。 2023—2024 年度，个人获评广州新华学院艺术设计与传媒学院“十佳记者”。 任职期间，所在视觉映像部获学院“突出贡献奖”（集体荣誉）。"
+    },
+    {
+      "year": "2022.09 — 2023.09",
+      "company": "PEA摄影社",
+      "role": "文体部副部长（在校）",
+      "roleEn": "CAMPUS / ACTIVITY PLANNING",
+      "keyProjects": [
+        "负责各项活动的项目定位，制定时间推进表并参与品牌活动策划。"
+      ],
+      "keywords": [
+        "PLANNING",
+        "TEAMWORK"
+      ],
+      "desc": "负责各项活动的项目定位，制定时间推进表并参与品牌活动策划。"
+    },
+    {
+      "year": "教育与技能",
+      "company": "广州新华学院",
+      "role": "网络与新媒体 · 本科",
+      "roleEn": "EDUCATION / SKILLS",
+      "keyProjects": [
+        "GPA 3.6（专业前 10%），曾获校奖学金三等奖。",
+        "视觉设计：Photoshop、Illustrator；品牌视觉、宣传物料、新媒体排版及 IP 视觉延展；使用 GPT 生图、Midjourney 辅助概念探索。",
+        "三维设计：C4D、ZBrush；建模、UV、材质贴图、渲染及简单动画；具备 UE5 基础使用能力。",
+        "视频制作：剪映、After Effects；短视频剪辑、包装与基础动效，结合 Seedance 辅助分镜预演及动态素材生成。",
+        "语言：雅思 6.5、CET-6，具备英文资料检索、阅读及基础沟通能力。"
+      ],
+      "keywords": [
+        "C4D",
+        "ZBRUSH",
+        "PS / AI",
+        "AE"
+      ],
+      "desc": "GPA 3.6（专业前 10%），曾获校奖学金三等奖。 视觉设计：Photoshop、Illustrator；品牌视觉、宣传物料、新媒体排版及 IP 视觉延展；使用 GPT 生图、Midjourney 辅助概念探索。 三维设计：C4D、ZBrush；建模、UV、材质贴图、渲染及简单动画；具备 UE5 基础使用能力。 视频制作：剪映、After Effects；短视频剪辑、包装与基础动效，结合 Seedance 辅助分镜预演及动态素材生成。 语言：雅思 6.5、CET-6，具备英文资料检索、阅读及基础沟通能力。"
+    },
+    {
+      "year": "竞赛荣誉",
+      "company": "设计与视频创作奖项",
+      "role": "全国及省级赛事",
+      "roleEn": "AWARDS",
+      "keyProjects": [
+        "第十六届全国大学生广告艺术大赛：短视频哇哈哈广告类全国奖。",
+        "2023年“高校社杯”大学生“用外语讲好中国故事”短视频比赛：省三等奖。",
+        "广东省第四届高校防范非法金融活动微视频和海报设计大赛：视频组省特等奖。",
+        "2023年（第16届）中国大学生计算机设计大赛：国赛三等奖。"
+      ],
+      "keywords": [
+        "DESIGN",
+        "VIDEO",
+        "AWARDS"
+      ],
+      "desc": "第十六届全国大学生广告艺术大赛：短视频哇哈哈广告类全国奖。 2023年“高校社杯”大学生“用外语讲好中国故事”短视频比赛：省三等奖。 广东省第四届高校防范非法金融活动微视频和海报设计大赛：视频组省特等奖。 2023年（第16届）中国大学生计算机设计大赛：国赛三等奖。"
+    },
+    {
+      "year": "2025 — 2026",
+      "company": "AIGC 与新媒体研究",
+      "role": "毕业论文 / 合作研究",
+      "roleEn": "RESEARCH",
+      "keyProjects": [
+        "《生成式人工智能技术下短视频平台的应用研究——以抖音平台为例》获评 2025 届校级优秀本科毕业论文。",
+        "与导师合作完成《AI特效在抖音平台的扩散机制实证研究》，被《家庭影院技术》期刊录用（2025年1–11月刊），并被 CNKI 中国期刊全文数据库收录。",
+        "论文：Teachers’ Continuance Use of AIGC in Practice-Oriented Courses—Evidence from E-commerce Live Streaming Teaching. 研究成果发表于 IEEE ICEIT 2026 Conference Proceedings（pp.503–508），并于 ICEIT 2026 完成英文口头汇报。DOI：10.1109/ICEIT68991.2026.11521741"
+      ],
+      "keywords": [
+        "AIGC",
+        "RESEARCH",
+        "NEW MEDIA"
+      ],
+      "desc": "《生成式人工智能技术下短视频平台的应用研究——以抖音平台为例》获评 2025 届校级优秀本科毕业论文。 与导师合作完成《AI特效在抖音平台的扩散机制实证研究》，被《家庭影院技术》期刊录用（2025年1–11月刊），并被 CNKI 中国期刊全文数据库收录。 论文：Teachers’ Continuance Use of AIGC in Practice-Oriented Courses—Evidence from E-commerce Live Streaming Teaching. 研究成果发表于 IEEE ICEIT 2026 Conference Proceedings（pp.503–508），并于 ICEIT 2026 完成英文口头汇报。DOI：10.1109/ICEIT68991.2026.11521741"
+    }
+  ],
+  "tools": [
+    {
+      "name": "Illustrator",
+      "icon": "/images/tools/illustrator.png",
+      "category": "平面与界面设计"
+    },
+    {
+      "name": "Photoshop",
+      "icon": "/images/tools/photoshop.png",
+      "category": "平面与界面设计"
+    },
+    {
+      "name": "ChatGPT",
+      "icon": "/images/tools/chatgpt.png",
+      "category": "AI 创作"
+    },
+    {
+      "name": "After Effects",
+      "icon": "/images/tools/after-effects.svg?v=official-20261007",
+      "category": "视频制作"
+    },
+    {
+      "name": "Figma",
+      "icon": "/images/tools/figma-current.png",
+      "category": "平面与界面设计"
+    },
+    {
+      "name": "Unreal Engine",
+      "icon": "/images/tools/unreal-engine.svg",
+      "category": "三维与材质"
+    },
+    {
+      "name": "剪映",
+      "icon": "/images/tools/jianying-current.ico",
+      "category": "视频制作"
+    },
+    {
+      "name": "Midjourney",
+      "icon": "/images/tools/midjourney.svg",
+      "category": "AI 创作"
+    },
+    {
+      "name": "Cinema 4D",
+      "icon": "/images/tools/cinema4d.svg?v=official-20261007",
+      "category": "三维与材质"
+    },
+    {
+      "name": "ZBrush",
+      "icon": "/images/tools/zbrush.svg?v=official-20261007",
+      "category": "三维与材质"
+    },
+    {
+      "name": "Marvelous Designer",
+      "icon": "/images/tools/marvelous-designer-current.png",
+      "category": "三维与材质"
+    },
+    {
+      "name": "Adobe Substance 3D Painter",
+      "icon": "/images/tools/painter.svg",
+      "category": "三维与材质"
+    },
+    {
+      "name": "Style3D Atelier",
+      "icon": "/images/tools/style3d-atelier-app.png",
+      "category": "三维与材质"
+    },
+    {
+      "name": "LibTV",
+      "icon": "/images/tools/libtv.png",
+      "category": "视频制作"
+    }
+  ]
+}
