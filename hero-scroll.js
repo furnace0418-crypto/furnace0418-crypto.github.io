@@ -21,6 +21,7 @@
   let turning = false;
   let lastScrollPosition = scrollY;
   let authorizedHomeTurn = false;
+  let navigationUntil = 0;
   let landingUntil = 0;
   let paintQueued = false;
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
@@ -48,6 +49,18 @@
     const current = scrollY;
     const top = work.offsetTop;
     const bottom = work.offsetTop + work.offsetHeight;
+    // A large wheel/trackpad impulse can jump over the whole one-screen
+    // directory before its own chapter handler sees the section.
+    if (!turning && performance.now() > navigationUntil && lastScrollPosition < current &&
+        lastScrollPosition < bottom - 4 && current >= bottom - 4 &&
+        work.dataset.chapter !== "4") {
+      scrollTo({ top, behavior: "instant" });
+      work.dispatchEvent(new Event("directory:enter-from-above"));
+      lastScrollPosition = top;
+      landingUntil = performance.now() + 650;
+      requestPaint();
+      return;
+    }
     // Treat the directory as a mandatory stop on the way back from the
     // profile, even if one fast gesture crosses the entire viewport.
     if (!turning && !authorizedHomeTurn && lastScrollPosition > current &&
@@ -132,6 +145,9 @@
       event.preventDefault();
       work.dispatchEvent(new Event("directory:enter-from-above"));
       turn(top);
+    } else if (event.deltaY > 0 && scrollY >= top - 4 && scrollY < bottom - 4 && work.dataset.chapter !== "4") {
+      // The directory owns wheel input until its final overview chapter.
+      event.preventDefault();
     } else if (event.deltaY < 0 && scrollY > 4 && scrollY < top + 110 && work.dataset.chapter === "0") {
       event.preventDefault();
       // Show the first card long enough to register, then let the next upward
@@ -154,6 +170,7 @@
     addEventListener("wheel", wheel, { passive: false, capture: true });
     addEventListener("click", event => {
       if (event.target.closest?.('a[href="#hero"]')) authorizedHomeTurn = true;
+      if (event.target.closest?.('a[href^="#"]:not([href="#work"])')) navigationUntil = performance.now() + 1800;
     }, { capture: true });
     paint();
   }

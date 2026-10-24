@@ -1,5 +1,6 @@
 ﻿<!doctype html>
-<script defer src="/hero-scroll.js?v=10"></script>
+<script defer src="/hero-scroll.js?v=11"></script>
+<script defer src="/startup.js?v=1"></script>
 <html lang="zh-CN"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="preload" as="image" href="/images/index/hero-poster.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/images/index/profile-furnace.jpg" fetchpriority="high">
+    <script>document.documentElement.classList.add('is-loading')</script>
+    <style>
+      html.is-loading,html.is-loading body{overflow:hidden!important}
+      #site-startup{position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;background:#111213;color:#f1eee8;font-family:Arial,sans-serif;transition:opacity .42s ease,visibility .42s ease}
+      #site-startup.is-done{opacity:0;visibility:hidden;pointer-events:none}
+      .startup-inner{width:min(460px,calc(100vw - 64px))}
+      .startup-name{font-size:clamp(32px,7vw,64px);font-weight:900;letter-spacing:-.07em;line-height:1}
+      .startup-meta{display:flex;justify-content:space-between;margin-top:20px;font-size:11px;letter-spacing:.18em;color:#aaa6a1}
+      .startup-track{height:2px;margin-top:18px;background:#414042;overflow:hidden}
+      .startup-track::after{content:"";display:block;width:36%;height:100%;background:#c84349;animation:startup-progress 1.4s ease-in-out infinite alternate}
+      @keyframes startup-progress{from{transform:translateX(-100%)}to{transform:translateX(280%)}}
+      @media(prefers-reduced-motion:reduce){.startup-track::after{animation:none;width:100%}}
+    </style>
 
     <!--
       瀛椾綋璇存槑(鏂逛究浣犱互鍚庤嚜宸辨崲瀛椾綋):
@@ -21,5 +36,5 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Caveat:wght@600;700&amp;family=Unbounded:wght@400;600;800;900&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;family=Zen+Old+Mincho:wght@400;600;900&amp;display=swap" rel="stylesheet">
     <script src="/vendor/hls.min.js"></script><script src="/video-hls.js?v=20261024-release" defer></script><script type="module" crossorigin="" src="/assets/index-gFwxnGoH.js?v=20261025-hero-fast"></script>
     <link rel="stylesheet" crossorigin="" href="/assets/theme-red.css?v=20261025-webp">
-<link rel="stylesheet" href="/custom.css?v=20261025-webp"><link rel="stylesheet" href="/contact.css"><link rel="stylesheet" href="/directory.css?v=20261025-webp"><link rel="stylesheet" href="/project-viewer.css?v=20261024-zoom-out"><link rel="stylesheet" href="/gallery.css?v=20261024-rail-cleanup"></head><body><div id="root"></div><script src="/title-reveal.js?v=4" defer></script><script src="/project-viewer-texture.js?v=20261024-glass-refine" defer></script></body></html>
+<link rel="stylesheet" href="/custom.css?v=20261025-webp"><link rel="stylesheet" href="/contact.css"><link rel="stylesheet" href="/directory.css?v=20261025-webp"><link rel="stylesheet" href="/project-viewer.css?v=20261024-zoom-out"><link rel="stylesheet" href="/gallery.css?v=20261024-rail-cleanup"></head><body><div id="site-startup" role="status" aria-live="polite"><div class="startup-inner"><div class="startup-name">FURNACE.</div><div class="startup-meta"><span>PORTFOLIO / 2026</span><span>正在准备作品</span></div><div class="startup-track" aria-hidden="true"></div></div></div><div id="root"></div><script src="/title-reveal.js?v=4" defer></script><script src="/project-viewer-texture.js?v=20261024-glass-refine" defer></script></body></html>
 
