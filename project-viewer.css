@@ -52,7 +52,18 @@
 .project-reader-controls>button[aria-label="缩小"]{font-size:25px;line-height:1}
 
 @media (hover:none), (max-width:780px){
-  .project-reader-viewport{touch-action:pan-x pan-y;cursor:auto;overscroll-behavior:contain}
+  .project-reader{width:100vw;height:100dvh;max-height:100dvh;margin:0;border-radius:0}
+  .project-reader-header{height:70px;padding:8px 60px 8px 14px;box-sizing:border-box;gap:8px}
+  .project-reader-header h3{font-size:clamp(14px,4vw,20px);line-height:1.1}
+  .project-reader-header>div>span{font-size:11px;line-height:1.25}
+  .project-reader-count{font-size:11px}
+  .project-reader-close{right:12px;top:13px;width:42px;height:42px}
+  .project-reader-body{height:calc(100% - 94px);gap:0}
+  .project-reader-controls{display:none!important}
+  .project-reader-viewport{width:100%;touch-action:pan-x pan-y;cursor:auto;overscroll-behavior:contain;border:0;border-radius:0;-webkit-backdrop-filter:none;backdrop-filter:none;scrollbar-width:none}
+  .project-reader-viewport::-webkit-scrollbar{display:none}
+  .project-reader-pages{padding:0 0 2px}
+  .project-reader-page{margin-bottom:10px}
   .project-reader-hint{font-size:0}
-  .project-reader-hint::after{content:'上下滑动浏览作品';font-size:11px}
+  .project-reader-hint::after{content:'上下滑动浏览 · 双指缩放';font-size:11px}
 }

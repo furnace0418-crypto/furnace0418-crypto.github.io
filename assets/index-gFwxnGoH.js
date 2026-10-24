@@ -1,4 +1,4 @@
-import {createProjectViewer} from "/project-viewer.js?v=20261025-touch-navigation";
+import {createProjectViewer} from "/project-viewer.js?v=20261025-pinch-reader";
 import {createTools} from "/tools.js";
 import {createDirectory} from "/directory.js?v=20261025-card-lock";
 import {createContact} from "/contact.js";

@@ -1,29 +1,65 @@
 export function createProjectViewer(React,jsx){
  const {jsx:el,jsxs:els}=jsx;
  return function ProjectViewer({item,onClose}){
-  const dialog=React.useRef(null),view=React.useRef(null),pagesRef=React.useRef([]),drag=React.useRef(null);
+  const dialog=React.useRef(null),view=React.useRef(null),pagesRef=React.useRef([]),drag=React.useRef(null),pinch=React.useRef(null),zoomRef=React.useRef(1),zoomFrame=React.useRef(null);
   const [page,setPage]=React.useState(0),[zoom,setZoom]=React.useState(1),[zoomOpen,setZoomOpen]=React.useState(false);
   const pages=item?(item.pages||[{src:item.cover,label:'封面'},...item.images]):[];
   React.useEffect(()=>{
    if(!item)return;
-   setPage(0);setZoom(1);setZoomOpen(false);
+   setPage(0);setZoom(1);zoomRef.current=1;pinch.current=null;setZoomOpen(false);
    const previous=document.activeElement,old=document.body.style.overflow;
    document.body.style.overflow='hidden';dialog.current.showModal();view.current.scrollTo(0,0);
    return()=>{document.body.style.overflow=old;previous?.focus({preventScroll:true})};
   },[item]);
   React.useEffect(()=>{
    if(!item)return;const node=view.current;
-   const wheel=event=>{if(event.ctrlKey){event.preventDefault();changeZoom(zoom+(event.deltaY<0?.15:-.15))}};
+   const wheel=event=>{if(event.ctrlKey){event.preventDefault();changeZoom(zoomRef.current+(event.deltaY<0?.15:-.15))}};
    node.addEventListener("wheel",wheel,{passive:false});return()=>node.removeEventListener("wheel",wheel);
-  },[item,zoom]);
+  },[item]);
+  React.useEffect(()=>{
+   if(!item)return;
+   const node=view.current;
+   const distance=touches=>Math.hypot(touches[0].clientX-touches[1].clientX,touches[0].clientY-touches[1].clientY);
+   const midpoint=touches=>{const rect=node.getBoundingClientRect();return{x:(touches[0].clientX+touches[1].clientX)/2-rect.left,y:(touches[0].clientY+touches[1].clientY)/2-rect.top}};
+   const start=event=>{
+    if(event.touches.length!==2)return;
+    const mid=midpoint(event.touches),scale=zoomRef.current;
+    pinch.current={distance:distance(event.touches),zoom:scale,contentX:(node.scrollLeft+mid.x)/scale,contentY:(node.scrollTop+mid.y)/scale};
+   };
+   const move=event=>{
+    if(event.touches.length!==2||!pinch.current)return;
+    event.preventDefault();
+    const gesture=pinch.current,mid=midpoint(event.touches);
+    const next=Math.max(.5,Math.min(3,gesture.zoom*distance(event.touches)/Math.max(gesture.distance,1)));
+    zoomRef.current=next;
+    setZoom(next);
+    if(zoomFrame.current)cancelAnimationFrame(zoomFrame.current);
+    zoomFrame.current=requestAnimationFrame(()=>{
+     node.scrollLeft=gesture.contentX*next-mid.x;
+     node.scrollTop=gesture.contentY*next-mid.y;
+    });
+   };
+   const end=event=>{if(event.touches.length<2)pinch.current=null};
+   node.addEventListener('touchstart',start,{passive:true});
+   node.addEventListener('touchmove',move,{passive:false});
+   node.addEventListener('touchend',end,{passive:true});
+   node.addEventListener('touchcancel',end,{passive:true});
+   return()=>{
+    node.removeEventListener('touchstart',start);
+    node.removeEventListener('touchmove',move);
+    node.removeEventListener('touchend',end);
+    node.removeEventListener('touchcancel',end);
+    if(zoomFrame.current)cancelAnimationFrame(zoomFrame.current);
+   };
+  },[item]);
   function go(delta){
    const next=Math.max(0,Math.min(pages.length-1,page+delta)),node=pagesRef.current[next];
    if(node){view.current.scrollTo({top:node.offsetTop-12,behavior:'smooth'});setPage(next)}
   }
   function changeZoom(value){
-   const next=Math.max(.5,Math.min(3,Number(value))),node=view.current;
-   const x=(node.scrollLeft+node.clientWidth/2)/zoom,y=(node.scrollTop+node.clientHeight/2)/zoom;
-   setZoom(next);requestAnimationFrame(()=>{node.scrollLeft=x*next-node.clientWidth/2;node.scrollTop=y*next-node.clientHeight/2});
+   const next=Math.max(.5,Math.min(3,Number(value))),node=view.current,current=zoomRef.current;
+   const x=(node.scrollLeft+node.clientWidth/2)/current,y=(node.scrollTop+node.clientHeight/2)/current;
+   zoomRef.current=next;setZoom(next);requestAnimationFrame(()=>{node.scrollLeft=x*next-node.clientWidth/2;node.scrollTop=y*next-node.clientHeight/2});
   }
   function track(){
    const node=view.current;let index=0;
