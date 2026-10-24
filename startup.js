@@ -54,13 +54,14 @@
     video.src = url;
     video.preload = 'auto';
     video.load();
+    const playAttempt = video.play().catch(() => {});
     if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
       await new Promise((resolve, reject) => {
         video.addEventListener('loadeddata', resolve, {once: true});
         video.addEventListener('error', reject, {once: true});
       });
     }
-    await video.play().catch(() => {});
+    await playAttempt;
   }
   async function start() {
     retry.hidden = true;
