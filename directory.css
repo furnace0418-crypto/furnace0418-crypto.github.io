@@ -408,3 +408,29 @@ main>section:not(#hero),.contact-finale,.site-footer,#work.directory-expanded{ba
   #work .directory-mobile-controls span{min-width:58px;text-align:center;white-space:nowrap}
 }
 
+/* Mobile introduction is a quiet, single-card screen. Tapping the card advances. */
+@media (hover:none), (max-width:780px){
+  #work.directory-expanded{height:100svh;min-height:100svh;overflow:hidden;overscroll-behavior:none}
+  #work .directory-scene:not(.is-active){visibility:hidden!important;pointer-events:none!important}
+  #work .directory-scene:not(.is-active) .directory-visual{visibility:hidden!important;opacity:0!important}
+  #work .directory-scene.is-active .directory-visual{visibility:visible!important;opacity:1!important}
+  #work .index-glass-card,#work .index-glass-card:hover,#work .index-glass-card:focus-visible{padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;transform:none!important}
+  #work .index-card-window{border:1px solid #ffffff28;border-radius:18px;background:#17191b}
+  #work .index-card-copy{padding:10px 2px 0!important;min-height:0!important;height:auto!important}
+  #work .index-card-copy h3{font-size:16px!important;line-height:1.2}
+  #work .index-card-copy p{font-size:11px!important;line-height:1.4}
+  #work .index-card-footer{display:none}
+  #work .directory-scene .directory-visual,#work .directory-scene.is-active .directory-visual{width:min(78vw,340px)!important;height:min(45svh,390px)!important;filter:none!important;scale:1!important}
+  #work .directory-scene .index-card-window{height:calc(100% - 58px)!important}
+  #work .directory-mobile-controls{bottom:max(12px,env(safe-area-inset-bottom));border:0;background:transparent;box-shadow:none;padding:0;gap:12px}
+  #work .directory-mobile-controls button{background:#ffffff16;border:1px solid #ffffff24}
+  #work .directory-mobile-controls .directory-home-button{border-color:#ffffff24;background:#ffffff0d}
+  #work .directory-scene .directory-visual .index-glass-card,
+  #work .directory-scene .directory-visual .index-glass-card:hover,
+  #work .directory-scene .directory-visual .index-glass-card:focus-visible{background:transparent!important}
+}
+@media (hover:none) and (orientation:portrait), (max-width:780px) and (min-height:701px){
+  #work .directory-stage{padding-bottom:84px!important}
+  #work .directory-scene .directory-visual,#work .directory-scene.is-active .directory-visual{height:min(41svh,360px)!important}
+}
+

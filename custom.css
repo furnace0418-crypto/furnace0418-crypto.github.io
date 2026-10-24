@@ -666,7 +666,7 @@ html.title-reveal-enabled :is(.directory-mega-title,.profile-title,.section-titl
 /* Project archive: touch users browse covers by swiping, then tap to open. */
 @media (hover:none), (max-width:780px){
   #ip .ip-accordion-wrap{overflow:visible}
-  #ip .ip-accordion{display:flex!important;align-items:stretch;gap:12px!important;width:100%;height:min(68svh,540px)!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;touch-action:pan-x;scrollbar-width:none;padding:0 max(0px,calc((100% - min(82vw,430px))/2)) 8px;box-sizing:border-box}
+  #ip .ip-accordion{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;align-items:stretch;gap:12px!important;width:100%;height:min(68svh,540px)!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;touch-action:pan-x;scrollbar-width:none;padding:0 max(0px,calc((100% - min(82vw,430px))/2)) 8px;box-sizing:border-box}
   #ip .ip-accordion::-webkit-scrollbar{display:none}
   #ip .ip-accordion .ag-panel{position:relative!important;display:block!important;flex:0 0 min(82vw,430px)!important;width:min(82vw,430px)!important;min-width:min(82vw,430px)!important;height:100%!important;scroll-snap-align:center;transform:none!important;filter:none!important;opacity:1!important;overflow:hidden;touch-action:pan-x;cursor:pointer}
   #ip .ip-accordion .ag-panel__frame{position:absolute;inset:0;display:block;width:100%;height:100%}

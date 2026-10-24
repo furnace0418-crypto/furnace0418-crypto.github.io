@@ -39,9 +39,10 @@ export function createDirectory(React, jsx, cards, motion) {
       section.dataset.chapterChangedAt=String(performance.now());
       let lastSwitch=0,accumulated=0,overviewHold=0;
       const overviewIndex=visibleCards.length;
+      const touchLayout=()=>matchMedia('(hover:none), (max-width:780px)').matches;
       const inDirectory=()=>Math.abs(section.getBoundingClientRect().top)<=90;
       const advance=direction=>{
-        const next=Math.max(0,Math.min(overviewIndex,activeRef.current+direction));
+        const next=Math.max(0,Math.min(touchLayout()?overviewIndex-1:overviewIndex,activeRef.current+direction));
         if(next===activeRef.current)return false;
         if(Math.abs(section.getBoundingClientRect().top)>2)scrollTo({top:section.offsetTop,behavior:'instant'});
         activeRef.current=next;
@@ -64,9 +65,14 @@ export function createDirectory(React, jsx, cards, motion) {
           scrollTo({top:section.offsetTop+section.offsetHeight,behavior:'smooth'});
           return true;
         }
+        if(direction>0&&touchLayout()&&activeRef.current===overviewIndex-1){
+          section.dispatchEvent(new Event('directory:go-profile'));
+          return true;
+        }
         return advance(direction);
       };
       const wheel=event=>{
+        if(touchLayout())return;
         if(!inDirectory()||document.querySelector('dialog[open]'))return;
         const direction=Math.sign(event.deltaY);
         if(!direction||direction>0&&activeRef.current===overviewIndex||direction<0&&activeRef.current===0)return;
@@ -90,13 +96,13 @@ export function createDirectory(React, jsx, cards, motion) {
         if(direction&&step(direction))event.preventDefault();
       };
       const enterFromBelow=()=>{
-        activeRef.current=overviewIndex;
-        overviewHold=1;
+        activeRef.current=touchLayout()?overviewIndex-1:overviewIndex;
+        overviewHold=touchLayout()?0:1;
         section.classList.remove('is-overview-ready');
-        section.dataset.chapter=String(overviewIndex);
-        section.dataset.overviewHold='1';
+        section.dataset.chapter=String(activeRef.current);
+        section.dataset.overviewHold=String(overviewHold);
         section.dataset.chapterChangedAt=String(performance.now());
-        setActive(overviewIndex);
+        setActive(activeRef.current);
         accumulated=0;
         lastSwitch=performance.now();
       };
@@ -153,16 +159,22 @@ export function createDirectory(React, jsx, cards, motion) {
       const previous=document.body.style.overflow;document.body.style.overflow='hidden';
       return()=>{document.body.style.overflow=previous;if(node.open)node.close();trigger.current?.focus({preventScroll:true});};
     },[selected]);
-    function open(card,event){trigger.current=event.currentTarget;setSelected(card)}
+    function open(card,event){
+      if(matchMedia('(hover:none), (max-width:780px)').matches){
+        document.getElementById('work')?.dispatchEvent(new CustomEvent('directory:step',{detail:1}));
+        return;
+      }
+      trigger.current=event.currentTarget;setSelected(card);
+    }
     function navigate(){close(selected.target)}
     return els('section',{id:'work',className:`section directory-section directory-expanded${entered?' is-entered':''}${active===visibleCards.length?' is-overview':''}`,children:[
       els('div',{className:'directory-story',children:[
         els('div',{className:'directory-sticky',children:[
           els('div',{className:'container directory-stage',children:[
             el('div',{className:'directory-scenes',children:visibleCards.map((card,index)=>els('div',{className:`directory-scene${active===index&&entered?' is-active':''}`,style:{'--stack-depth':(index-active+visibleCards.length)%visibleCards.length,'--card-slot':index},'aria-hidden':(active!==index&&active!==visibleCards.length)||!entered,children:[
-              el('div',{className:'directory-visual',children:els(DirectoryCard,{type:'button',className:'index-glass-card',style:{'--card-order':index,'--card-tilt':'0deg'},tabIndex:active===index||active===visibleCards.length?0:-1,onClick:event=>open(card,event),'aria-haspopup':'dialog','aria-label':`查看${card.titleCn}`,children:[
+              el('div',{className:'directory-visual',children:els(DirectoryCard,{type:'button',className:'index-glass-card',style:{'--card-order':index,'--card-tilt':'0deg'},tabIndex:active===index||active===visibleCards.length?0:-1,onClick:event=>open(card,event),'aria-label':`${card.titleCn}，点击继续`,children:[
                 els('div',{className:'index-card-window',children:[el('img',{src:card.image,alt:card.titleCn,loading:index===0?'eager':'lazy'}),el('span',{className:'index-card-number',children:card.index})]}),
-                els('div',{className:'index-card-copy',children:[el('h3',{children:card.titleEn}),el('p',{children:card.titleCn}),els('div',{className:'index-card-footer',children:[el('span',{children:card.footerTag}),el('span',{'aria-hidden':true,children:'↗'})]})]})
+                els('div',{className:'index-card-copy',children:[el('h3',{children:card.titleEn}),el('p',{children:card.titleCn}),els('div',{className:'index-card-footer',children:[el('span',{children:card.footerTag}),el('span',{'aria-hidden':true,children:matchMedia('(hover:none), (max-width:780px)').matches?'继续 →':'↗'})]})]})
               ]},card.id)}),
               els('div',{className:'directory-scene-copy',children:[
                 els('div',{className:'directory-scene-meta',children:[el('h3',{children:card.titleEn}),el('p',{className:'directory-scene-cn',children:card.titleCn})]}),
