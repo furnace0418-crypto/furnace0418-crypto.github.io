@@ -111,13 +111,23 @@ export function createDirectory(React, jsx, cards, motion) {
         accumulated=0;
         lastSwitch=performance.now();
       };
+      const resetForHome=()=>{
+        activeRef.current=0;
+        overviewHold=0;
+        section.classList.remove('is-overview-ready');
+        section.dataset.chapter='0';
+        section.dataset.overviewHold='0';
+        section.dataset.chapterChangedAt=String(performance.now());
+        setActive(0);
+      };
       addEventListener('wheel',wheel,{passive:false,capture:true});
       addEventListener('keydown',key);
       section.addEventListener('directory:enter-from-below',enterFromBelow);
       section.addEventListener('directory:enter-from-above',enterFromAbove);
+      section.addEventListener('directory:go-home',resetForHome);
       const stepEvent=event=>step(event.detail);
       section.addEventListener('directory:step',stepEvent);
-      return()=>{removeEventListener('wheel',wheel,true);removeEventListener('keydown',key);section.removeEventListener('directory:enter-from-below',enterFromBelow);section.removeEventListener('directory:enter-from-above',enterFromAbove);section.removeEventListener('directory:step',stepEvent)};
+      return()=>{removeEventListener('wheel',wheel,true);removeEventListener('keydown',key);section.removeEventListener('directory:enter-from-below',enterFromBelow);section.removeEventListener('directory:enter-from-above',enterFromAbove);section.removeEventListener('directory:go-home',resetForHome);section.removeEventListener('directory:step',stepEvent)};
     },[]);
 
     const dialog=React.useRef(null);

@@ -1,6 +1,6 @@
 import {createProjectViewer} from "/project-viewer.js?v=20261025-touch-navigation";
 import {createTools} from "/tools.js";
-import {createDirectory} from "/directory.js?v=20261025-touch-navigation";
+import {createDirectory} from "/directory.js?v=20261025-touch-navigation2";
 import {createContact} from "/contact.js";
 (function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))r(i);new MutationObserver(i=>{for(const s of i)if(s.type==="childList")for(const a of s.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&r(a)}).observe(document,{childList:!0,subtree:!0});function n(i){const s={};return i.integrity&&(s.integrity=i.integrity),i.referrerPolicy&&(s.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?s.credentials="include":i.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function r(i){if(i.ep)return;i.ep=!0;const s=n(i);fetch(i.href,s)}})();function vx(t){return t&&t.__esModule&&Object.prototype.hasOwnProperty.call(t,"default")?t.default:t}var gg={exports:{}},Xo={},yg={exports:{}},G={};/**
  * @license React
