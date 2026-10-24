@@ -168,6 +168,10 @@
     addEventListener("scroll", guardDirectoryCrossing, { passive: true });
     addEventListener("resize", requestPaint, { passive: true });
     addEventListener("wheel", wheel, { passive: false, capture: true });
+    work.addEventListener("directory:go-home", () => {
+      authorizedHomeTurn = true;
+      turn(0);
+    });
     addEventListener("click", event => {
       if (event.target.closest?.('a[href="#hero"]')) authorizedHomeTurn = true;
       if (event.target.closest?.('a[href^="#"]:not([href="#work"])')) navigationUntil = performance.now() + 1800;

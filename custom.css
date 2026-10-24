@@ -659,3 +659,7 @@ html.title-reveal-enabled :is(.directory-mega-title,.profile-title,.section-titl
   #work .directory-scene .index-glass-card{box-shadow:0 8px 20px #0007!important}
 }
 
+
+.hero-tap-to-play{position:absolute;z-index:20;right:24px;bottom:32px;padding:11px 15px;border:1px solid #ffffff66;border-radius:999px;background:#101113e8;color:#fff;font:600 13px Arial,sans-serif}
+@media(max-width:780px){.hero-tap-to-play{right:15px;bottom:18px}}
+

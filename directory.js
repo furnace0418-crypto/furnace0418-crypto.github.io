@@ -55,6 +55,17 @@ export function createDirectory(React, jsx, cards, motion) {
         accumulated=0;
         return true;
       };
+      const step=direction=>{
+        if(direction<0&&activeRef.current===0){
+          section.dispatchEvent(new Event('directory:go-home'));
+          return true;
+        }
+        if(direction>0&&activeRef.current===overviewIndex){
+          scrollTo({top:section.offsetTop+section.offsetHeight,behavior:'smooth'});
+          return true;
+        }
+        return advance(direction);
+      };
       const wheel=event=>{
         if(!inDirectory()||document.querySelector('dialog[open]'))return;
         const direction=Math.sign(event.deltaY);
@@ -76,7 +87,7 @@ export function createDirectory(React, jsx, cards, motion) {
       const key=event=>{
         if(!inDirectory()||document.querySelector('dialog[open]'))return;
         const direction=['ArrowDown','PageDown'].includes(event.key)?1:['ArrowUp','PageUp'].includes(event.key)?-1:0;
-        if(direction&&advance(direction))event.preventDefault();
+        if(direction&&step(direction))event.preventDefault();
       };
       const touchStart=event=>{if(inDirectory())touchY=event.touches[0]?.clientY??null};
       const touchMove=event=>{if(touchY!==null&&inDirectory()&&activeRef.current<overviewIndex)event.preventDefault()};
@@ -84,7 +95,7 @@ export function createDirectory(React, jsx, cards, motion) {
         if(touchY===null||!inDirectory())return;
         const distance=touchY-(event.changedTouches[0]?.clientY??touchY);
         touchY=null;
-        if(Math.abs(distance)>60&&advance(Math.sign(distance)))event.preventDefault();
+        if(Math.abs(distance)>45&&step(Math.sign(distance)))event.preventDefault();
       };
       const enterFromBelow=()=>{
         activeRef.current=overviewIndex;
@@ -112,10 +123,12 @@ export function createDirectory(React, jsx, cards, motion) {
       addEventListener('keydown',key);
       section.addEventListener('directory:enter-from-below',enterFromBelow);
       section.addEventListener('directory:enter-from-above',enterFromAbove);
+      const stepEvent=event=>step(event.detail);
+      section.addEventListener('directory:step',stepEvent);
       section.addEventListener('touchstart',touchStart,{passive:true});
       section.addEventListener('touchmove',touchMove,{passive:false});
       section.addEventListener('touchend',touchEnd,{passive:false});
-      return()=>{removeEventListener('wheel',wheel,true);removeEventListener('keydown',key);section.removeEventListener('directory:enter-from-below',enterFromBelow);section.removeEventListener('directory:enter-from-above',enterFromAbove);section.removeEventListener('touchstart',touchStart);section.removeEventListener('touchmove',touchMove);section.removeEventListener('touchend',touchEnd)};
+      return()=>{removeEventListener('wheel',wheel,true);removeEventListener('keydown',key);section.removeEventListener('directory:enter-from-below',enterFromBelow);section.removeEventListener('directory:enter-from-above',enterFromAbove);section.removeEventListener('directory:step',stepEvent);section.removeEventListener('touchstart',touchStart);section.removeEventListener('touchmove',touchMove);section.removeEventListener('touchend',touchEnd)};
     },[]);
 
     const dialog=React.useRef(null);
@@ -158,6 +171,11 @@ export function createDirectory(React, jsx, cards, motion) {
                 el('p',{className:'directory-scene-translation',children:descriptions[card.target].cn})
               ]})
             ]},card.id))}),
+            els('nav',{className:'directory-mobile-controls','aria-label':'卡片翻页',children:[
+              el('button',{type:'button','aria-label':'上一张',onClick:()=>document.getElementById('work')?.dispatchEvent(new CustomEvent('directory:step',{detail:-1})),children:'←'}),
+              el('span',{children:active===visibleCards.length?'全部作品':`${String(active+1).padStart(2,'0')} / 04`}),
+              el('button',{type:'button','aria-label':'下一张',onClick:()=>document.getElementById('work')?.dispatchEvent(new CustomEvent('directory:step',{detail:1})),children:'→'})
+            ]}),
           ]})
         ]})
       ]}),

@@ -362,3 +362,41 @@ main>section:not(#hero),.contact-finale,.site-footer,#work.directory-expanded{ba
   }
 }
 
+
+/* Touch navigation keeps the chapter motion without mobile blur or clip-path repaints. */
+.directory-mobile-controls{display:none}
+@media (hover:none), (max-width:1100px) and (max-height:700px) {
+  #work .directory-visual{transition:opacity .32s ease,scale .36s cubic-bezier(.22,1,.36,1)!important;scale:.96}
+  #work .directory-scene.is-active .directory-visual{scale:1}
+  #work.is-overview .directory-scene .directory-visual,
+  #work.is-overview .directory-scene.is-active .directory-visual{
+    visibility:visible!important;opacity:1!important;pointer-events:auto!important;scale:1;
+    transition:opacity .32s ease,scale .36s cubic-bezier(.22,1,.36,1)!important;
+  }
+  #work .directory-scene-copy{transition:opacity .26s ease!important}
+  #work .directory-mobile-controls{position:absolute;z-index:30;left:50%;bottom:8px;transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:18px;min-width:178px;padding:5px 8px;border:1px solid #ffffff30;border-radius:999px;background:#111d;color:#eee;font:600 11px Arial,sans-serif;letter-spacing:.06em}
+  #work .directory-mobile-controls button{width:35px;height:35px;border:0;border-radius:50%;background:#ffffff17;color:#fff;font:22px Arial,sans-serif;line-height:1}
+  #work .directory-mobile-controls button:active{background:#c84349}
+}
+@media (hover:none) and (orientation:portrait), (max-width:780px) and (min-height:701px) {
+  #work.is-overview .directory-scenes{overflow:hidden!important}
+  #work.is-overview .directory-scene .directory-visual,
+  #work.is-overview .directory-scene.is-active .directory-visual{
+    top:4%!important;bottom:auto!important;left:4%!important;width:43%!important;height:min(32svh,260px)!important;transform:none!important;
+  }
+  #work.is-overview .directory-scene:nth-child(2) .directory-visual{left:53%!important}
+  #work.is-overview .directory-scene:nth-child(3) .directory-visual{top:52%!important}
+  #work.is-overview .directory-scene:nth-child(4) .directory-visual{top:52%!important;left:53%!important}
+  #work.is-overview .directory-scene .index-card-copy{height:54px!important;padding:4px 4px 0!important}
+  #work.is-overview .directory-scene .index-card-window{height:calc(100% - 54px)!important}
+  #work.is-overview .directory-scene .index-card-copy h3{font-size:11px!important;line-height:1.15}
+  #work.is-overview .directory-scene .index-card-copy p,#work.is-overview .directory-scene .index-card-footer{font-size:8px!important}
+}
+
+
+/* The overview must reveal every card, including before the entrance observer fires. */
+#work.is-overview .directory-scene .directory-visual,
+#work.is-overview .directory-scene.is-active .directory-visual{
+  visibility:visible!important;opacity:1!important;pointer-events:auto!important;transition:none!important;
+}
+
