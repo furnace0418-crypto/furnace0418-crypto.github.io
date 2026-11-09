@@ -26,9 +26,27 @@
     };
     check();
   });
+  // Start gallery downloads before the visitor scrolls into the section.
+  const galleryReady = (async () => {
+    const response = await fetch('/gallery-preload.json?v=20261110');
+    if (!response.ok) throw new Error('Gallery manifest unavailable');
+    const urls = await response.json();
+    const half = Math.ceil(urls.length / 2);
+    async function loadBatch(batch) {
+      let cursor = 0;
+      await Promise.all(Array.from({length: 3}, async () => {
+        while (cursor < batch.length) {
+          const src = batch[cursor++];
+          try { await imageReady(src); } catch (error) { console.warn(error); }
+        }
+      }));
+    }
+    await loadBatch(urls.slice(0, half));
+    return () => loadBatch(urls.slice(half));
+  })().catch(error => { console.warn(error); return () => Promise.resolve(); });
   async function videoReady() {
     status.textContent = '正在加载首页视频';
-    const response = await fetch('/videos/hero-fast.mp4?v=mobile2', {cache: 'force-cache'});
+    const response = await fetch('/videos/hero-lite.mp4?v=20261110', {cache: 'force-cache'});
     if (!response.ok) throw new Error('Video HTTP ' + response.status);
     const size = Number(response.headers.get('content-length')) || 0;
     let received = 0;
@@ -72,10 +90,11 @@
     try {
       const video = videoReady();
       const images = Promise.all(criticalImages.map(imageReady));
-      await Promise.all([video, images]);
+      const [, , loadRemaining] = await Promise.all([video, images, galleryReady]);
       status.textContent = '准备完成';
       overlay.classList.add('is-done');
       document.documentElement.classList.remove('is-loading');
+      void loadRemaining();
       setTimeout(() => overlay.remove(), 480);
     } catch (error) {
       console.error('Startup load failed:', error);
