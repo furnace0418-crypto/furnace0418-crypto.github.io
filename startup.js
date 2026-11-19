@@ -68,22 +68,22 @@
     video.playsInline = true;
     video.preload = 'auto';
     if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) video.load();
-    const showPlayButton = () => {
-      if (document.querySelector('.hero-tap-to-play')) return;
-      const button = document.createElement('button');
-      button.className = 'hero-tap-to-play';
-      button.textContent = '点击播放视频 ▶';
-      button.onclick = () => video.play().then(() => button.remove()).catch(() => {});
-      document.getElementById('hero')?.appendChild(button);
+    video.autoplay = true;
+    video.defaultMuted = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    const play = () => {
+      if (!document.documentElement.classList.contains('is-loading')) {
+        video.muted = true;
+        video.play().catch(() => {});
+      }
     };
-    const playAttempt = video.play().catch(showPlayButton);
-    if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
-      video.addEventListener('error', showPlayButton, {once: true});
-      setTimeout(() => {
-        if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) showPlayButton();
-      }, 2500);
-    }
-    void playAttempt;
+    video.addEventListener('canplay', play);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) play(); });
+    // Some mobile browsers require a gesture; retry silently on the first touch.
+    document.addEventListener('pointerdown', play, {passive:true});
+    video._startAfterLoading = play;
   }
   async function start() {
     retry.hidden = true;
@@ -94,6 +94,7 @@
       status.textContent = 'READY'; overlay.style.setProperty('--load-progress','100%');
       await new Promise(resolve => setTimeout(resolve, 350));
       document.documentElement.classList.remove('is-loading');
+      document.querySelector('#hero video.hero-video')?._startAfterLoading?.();
       requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('is-done')));
       void loadRemaining();
       setTimeout(() => overlay.remove(), 1100);
