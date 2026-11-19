@@ -24,3 +24,7 @@ html.phone-landscape-shell,html.phone-landscape-shell body{overflow:hidden!impor
 html.phone-landscape-shell #root,html.phone-landscape-shell #site-startup{display:none!important}
 html.phone-landscape-shell .phone-landscape-frame{display:block;position:fixed;left:0;top:0;border:0;transform-origin:top left;z-index:2147483646;background:#101112}
 html.phone-landscape-shell.phone-intro-complete .phone-rotate{display:none!important}
+/* Wide browser layout uses native scrolling, including when held upright. */
+html.phone-native-wide:not(.is-loading),html.phone-native-wide:not(.is-loading) body{overflow-x:hidden!important;overflow-y:auto!important;height:auto!important;touch-action:pan-x pan-y pinch-zoom}
+html.phone-native-wide.phone-intro-complete .phone-rotate{display:none!important}
+html.phone-native-wide #work{display:none!important}
