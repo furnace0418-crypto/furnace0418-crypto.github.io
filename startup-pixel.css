@@ -22,3 +22,12 @@
 .startup-track::after{background:#c84349!important;box-shadow:0 0 15px #c8434950}
 .startup-inner::after{content:'DESIGN / IMAGINATION / EXPRESSION';display:block;margin-top:18px;font:8px/1.5 Arial,sans-serif;letter-spacing:2px;color:#777471}
 .startup-retry{border-color:#c8434966;color:#f1eee8;background:#211719}
+.startup-meta{justify-content:center}
+.startup-meta>span:first-child{display:none}
+.startup-track{height:12px!important;padding:2px;clip-path:none;border-radius:8px;background:#f1eee82e!important}
+.startup-track::before{inset:1px;clip-path:none;border-radius:7px}
+.startup-track::after{display:block;border-radius:6px;transition:width .35s ease}
+#site-startup{transition:opacity .85s ease,visibility .85s ease!important}
+#root{opacity:1;transition:opacity 1s ease}
+html.is-loading #root{opacity:0}
+@media(prefers-reduced-motion:reduce){#site-startup,#root{transition-duration:.1s!important}}

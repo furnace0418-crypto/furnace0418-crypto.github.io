@@ -92,10 +92,11 @@
       const images = Promise.all(criticalImages.map(imageReady));
       const [, , loadRemaining] = await Promise.all([video, images, galleryReady]);
       status.textContent = 'READY'; overlay.style.setProperty('--load-progress','100%');
-      overlay.classList.add('is-done');
+      await new Promise(resolve => setTimeout(resolve, 350));
       document.documentElement.classList.remove('is-loading');
+      requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('is-done')));
       void loadRemaining();
-      setTimeout(() => overlay.remove(), 480);
+      setTimeout(() => overlay.remove(), 1100);
     } catch (error) {
       console.error('Startup load failed:', error);
       status.textContent = 'PLEASE RETRY';
