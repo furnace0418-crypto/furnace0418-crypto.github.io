@@ -1,0 +1,17 @@
+.phone-rotate{display:none}
+@media (hover:none) and (pointer:coarse) and (max-width:600px) and (orientation:portrait){
+  html,body{overflow:hidden!important}
+  .phone-rotate{position:fixed;inset:0;z-index:2147483647;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;box-sizing:border-box;background:radial-gradient(ellipse at center,#24191c,#0d0e10 70%);color:#f1eee8;text-align:center;font-family:Gotham,Arial,sans-serif}
+  .phone-rotate-icon{width:44px;height:76px;border:2px solid #f1eee8;border-radius:10px;position:relative;transform:rotate(-90deg);margin-bottom:36px;box-shadow:0 0 30px #c8434926}
+  .phone-rotate-icon::after{content:'';position:absolute;bottom:5px;left:50%;width:10px;height:3px;background:#c84349;border-radius:4px;transform:translateX(-50%)}
+  .phone-rotate h2{font-size:24px;letter-spacing:-1px;margin:0 0 14px}
+  .phone-rotate p{font-size:13px;line-height:1.8;color:#aaa6a1;margin:0}
+  .phone-rotate small{font-size:10px;letter-spacing:2px;color:#c84349;margin-top:22px}
+}
+@media (hover:none) and (pointer:coarse) and (max-height:600px) and (orientation:landscape){
+  #ip .ip-accordion{height:max(280px,76svh)!important}
+  #ip .ip-accordion .ag-panel{flex-basis:min(52vw,430px)!important;width:min(52vw,430px)!important;min-width:min(52vw,430px)!important}
+  #ip .ip-accordion{padding-inline:max(0px,calc((100% - min(52vw,430px))/2))}
+  .project-reader-header{height:56px}
+  .project-reader-body{height:calc(100% - 76px)}
+}

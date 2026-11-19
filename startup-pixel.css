@@ -31,3 +31,10 @@
 #root{opacity:1;transition:opacity 1s ease}
 html.is-loading #root{opacity:0}
 @media(prefers-reduced-motion:reduce){#site-startup,#root{transition-duration:.1s!important}}
+.startup-inner{display:flex;flex-direction:column;align-items:stretch}
+.startup-name{order:0;margin-bottom:18px}
+.startup-track{order:1;margin-top:0!important}
+.startup-meta{order:2;margin-top:14px}
+.startup-status{font-family:Gotham,Arial,sans-serif;font-weight:700;font-size:11px;letter-spacing:1px}
+.startup-retry{order:3}
+.startup-inner::after{display:none}
