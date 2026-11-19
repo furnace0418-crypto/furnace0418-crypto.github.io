@@ -1,46 +1,30 @@
 (() => {
   const gate = document.querySelector('.phone-rotate');
-  const button = document.createElement('button');
-  button.className = 'phone-rotate-start';
-  button.textContent = '开启横屏浏览';
-  const hint = document.createElement('p');
-  hint.className = 'phone-rotate-help';
-  hint.textContent = '点击开启全屏横屏模式';
-  gate?.append(button, hint);
-  button.addEventListener('click', async () => {
-    try {
-      if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
-        await document.documentElement.requestFullscreen();
-      }
-      if (screen.orientation?.lock) {
-        await screen.orientation.lock('landscape');
-        update();
-        return;
-      }
-      throw new Error('Orientation lock unsupported');
-    } catch (error) {
-      hint.textContent = '请打开手机系统“自动旋转”，然后将手机横放。当前浏览器不支持网页直接切换方向。';
-      button.textContent = '已横屏，继续浏览';
-      button.onclick = () => {
-        document.documentElement.classList.add('phone-is-landscape');
-        gate.style.setProperty('display', 'none', 'important');
-      };
-    }
-  }, {once:true});
+  const params = new URLSearchParams(location.search);
+  if (params.has('phoneLandscape')) { gate?.remove(); return; }
+  const phone = matchMedia('(pointer:coarse)').matches && Math.min(screen.width, screen.height) <= 600;
+  if (!phone) { gate?.remove(); return; }
+  const frame = document.createElement('iframe');
+  frame.className = 'phone-landscape-frame';
+  frame.title = 'FURNACE Portfolio';
+  frame.allow = 'autoplay; fullscreen';
+  const url = new URL(location.href);
+  url.searchParams.set('phoneLandscape', '1');
+  frame.src = url.href;
+  document.body.appendChild(frame);
+  document.documentElement.classList.add('phone-landscape-shell');
   const update = () => {
-    const angle = Number(screen.orientation?.angle ?? window.orientation ?? 0);
-    const landscape = Math.abs(angle) % 180 === 90 ||
-      screen.orientation?.type?.startsWith('landscape') ||
-      matchMedia('(orientation:landscape)').matches;
-    document.documentElement.classList.toggle('phone-is-landscape', !!landscape);
+    const portrait = innerHeight > innerWidth;
+    frame.style.width = (portrait ? innerHeight : innerWidth) + 'px';
+    frame.style.height = (portrait ? innerWidth : innerHeight) + 'px';
+    frame.style.transform = portrait ? 'rotate(90deg) translateY(-100%)' : 'none';
   };
   update();
-  addEventListener('orientationchange', () => {
-    update();
-    setTimeout(update, 150);
-    setTimeout(update, 600);
-  });
   addEventListener('resize', update, {passive:true});
-  screen.orientation?.addEventListener('change', update);
-  window.visualViewport?.addEventListener('resize', update);
+  gate?.querySelector('h2')?.replaceChildren('Landscape experience.');
+  gate?.querySelector('p')?.replaceChildren('即将进入横屏浏览');
+  setTimeout(() => {
+    gate?.remove();
+    document.documentElement.classList.add('phone-intro-complete');
+  }, 2000);
 })();

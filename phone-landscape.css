@@ -19,3 +19,8 @@ html.phone-is-landscape:not(.is-loading),html.phone-is-landscape:not(.is-loading
   .project-reader-header{height:56px}
   .project-reader-body{height:calc(100% - 76px)}
 }
+.phone-landscape-frame{display:none}
+html.phone-landscape-shell,html.phone-landscape-shell body{overflow:hidden!important;margin:0!important;height:100%!important}
+html.phone-landscape-shell #root,html.phone-landscape-shell #site-startup{display:none!important}
+html.phone-landscape-shell .phone-landscape-frame{display:block;position:fixed;left:0;top:0;border:0;transform-origin:top left;z-index:2147483646;background:#101112}
+html.phone-landscape-shell.phone-intro-complete .phone-rotate{display:none!important}
