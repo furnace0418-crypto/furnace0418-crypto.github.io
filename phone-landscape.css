@@ -1,4 +1,6 @@
 .phone-rotate{display:none}
+html.phone-is-landscape .phone-rotate{display:none!important}
+html.phone-is-landscape:not(.is-loading),html.phone-is-landscape:not(.is-loading) body{overflow:auto!important}
 @media (hover:none) and (pointer:coarse) and (max-width:600px) and (orientation:portrait){
   html,body{overflow:hidden!important}
   .phone-rotate{position:fixed;inset:0;z-index:2147483647;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;box-sizing:border-box;background:radial-gradient(ellipse at center,#24191c,#0d0e10 70%);color:#f1eee8;text-align:center;font-family:Gotham,Arial,sans-serif}
