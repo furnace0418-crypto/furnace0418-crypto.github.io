@@ -1,0 +1,10 @@
+#site-startup{background:#000!important;color:#fff!important}
+.startup-inner{width:min(300px,calc(100vw - 64px));text-align:center}
+.startup-name{display:none}
+.startup-meta{display:block;font:700 13px Georgia,'Times New Roman',serif;letter-spacing:2px;text-align:center;color:#fff}
+.startup-meta>span:first-child{display:none}
+.startup-status{display:block;min-height:18px;text-transform:uppercase;text-shadow:1px 0 #e44,-1px 0 #4cf}
+.startup-track{position:relative;height:22px!important;margin-top:13px!important;background:#fff!important;clip-path:polygon(12px 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,12px 100%,0 50%);padding:4px 8px;box-sizing:border-box}
+.startup-track::before{content:'';position:absolute;inset:4px 7px;background:#000;clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 50%,calc(100% - 7px) 100%,7px 100%,0 50%)}
+.startup-track::after{position:relative;width:var(--load-progress,5%)!important;height:100%;background:#fff!important;animation:none!important;transition:width .25s steps(8,end)}
+.startup-retry{color:#fff;border:1px solid #fff;background:#000;font:12px monospace;margin-top:20px;padding:8px 18px}

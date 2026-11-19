@@ -45,7 +45,7 @@
     return () => loadBatch(urls.slice(half));
   })().catch(error => { console.warn(error); return () => Promise.resolve(); });
   async function videoReady() {
-    status.textContent = '正在加载首页视频';
+    status.textContent = 'LOADING...';
     const response = await fetch('/videos/hero-lite.mp4?v=20261110', {cache: 'force-cache'});
     if (!response.ok) throw new Error('Video HTTP ' + response.status);
     const size = Number(response.headers.get('content-length')) || 0;
@@ -56,12 +56,12 @@
         const {done, value} = await reader.read();
         if (done) break;
         received += value.byteLength;
-        if (size) status.textContent = '正在加载首页视频 ' + Math.min(99, Math.round(received / size * 100)) + '%';
+        if(size) overlay.style.setProperty('--load-progress',Math.min(85,Math.round(received/size*85))+'%');
       }
     } else await response.arrayBuffer();
-    status.textContent = '视频已下载，正在准备画面';
+    status.textContent = 'PREPARING...';
     await appReady();
-    status.textContent = '正在检查视频画面';
+    status.textContent = 'LOADING...';
     const video = document.querySelector('#hero video.hero-video');
     if (!video) throw new Error('Hero video element missing');
     video.muted = true;
@@ -91,14 +91,14 @@
       const video = videoReady();
       const images = Promise.all(criticalImages.map(imageReady));
       const [, , loadRemaining] = await Promise.all([video, images, galleryReady]);
-      status.textContent = '准备完成';
+      status.textContent = 'READY'; overlay.style.setProperty('--load-progress','100%');
       overlay.classList.add('is-done');
       document.documentElement.classList.remove('is-loading');
       void loadRemaining();
       setTimeout(() => overlay.remove(), 480);
     } catch (error) {
       console.error('Startup load failed:', error);
-      status.textContent = '加载遇到问题，请重试';
+      status.textContent = 'PLEASE RETRY';
       retry.hidden = false;
     }
   }
