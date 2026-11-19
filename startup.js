@@ -20,7 +20,7 @@
     const check = () => {
       const hero = document.getElementById('hero');
       const work = document.getElementById('work');
-      if (hero && work && work.querySelectorAll('.index-glass-card').length === 4 && work.dataset.chapter !== undefined) {
+      if (hero && document.querySelector('#hero video.hero-video')) {
         resolve();
       } else setTimeout(check, 50);
     };

@@ -1,4 +1,6 @@
 .phone-rotate{display:none}
+.phone-rotate-start{margin-top:26px;padding:13px 24px;border:1px solid #c84349;border-radius:24px;background:#c84349;color:#f1eee8;font:700 13px Gotham,Arial,sans-serif;cursor:pointer}
+.phone-rotate .phone-rotate-help{margin-top:14px;max-width:280px;font-size:11px;line-height:1.7}
 html.phone-is-landscape .phone-rotate{display:none!important}
 html.phone-is-landscape:not(.is-loading),html.phone-is-landscape:not(.is-loading) body{overflow:auto!important}
 @media (hover:none) and (pointer:coarse) and (max-width:600px) and (orientation:portrait){
