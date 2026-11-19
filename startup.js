@@ -50,15 +50,17 @@
     if (!response.ok) throw new Error('Video HTTP ' + response.status);
     const size = Number(response.headers.get('content-length')) || 0;
     let received = 0;
+    const chunks = [];
     if (response.body) {
       const reader = response.body.getReader();
       while (true) {
         const {done, value} = await reader.read();
         if (done) break;
         received += value.byteLength;
+        chunks.push(value);
         if(size) overlay.style.setProperty('--load-progress',Math.min(85,Math.round(received/size*85))+'%');
       }
-    } else await response.arrayBuffer();
+    } else chunks.push(await response.arrayBuffer());
     status.textContent = 'PREPARING...';
     await appReady();
     status.textContent = 'LOADING...';
@@ -67,12 +69,18 @@
     video.muted = true;
     video.playsInline = true;
     video.preload = 'auto';
-    if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) video.load();
     video.autoplay = true;
     video.defaultMuted = true;
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
+    video.src = URL.createObjectURL(new Blob(chunks, {type:'video/mp4'}));
+    video.load();
+    await new Promise((resolve, reject) => {
+      if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) return resolve();
+      video.addEventListener('loadeddata', resolve, {once:true});
+      video.addEventListener('error', () => reject(new Error('Hero video decode failed')), {once:true});
+    });
     const play = () => {
       if (!document.documentElement.classList.contains('is-loading')) {
         video.muted = true;
@@ -84,6 +92,8 @@
     // Some mobile browsers require a gesture; retry silently on the first touch.
     document.addEventListener('pointerdown', play, {passive:true});
     video._startAfterLoading = play;
+    // Begin playback behind the loading screen so its first revealed frame moves.
+    await video.play().catch(() => {});
   }
   async function start() {
     retry.hidden = true;
