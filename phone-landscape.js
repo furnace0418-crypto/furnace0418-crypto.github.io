@@ -1,7 +1,31 @@
 (() => {
   const gate = document.querySelector('.phone-rotate');
   const params = new URLSearchParams(location.search);
-  if (params.has('phoneLandscape')) { gate?.remove(); return; }
+  if (params.has('phoneLandscape')) {
+    gate?.remove();
+    let last = null;
+    let target = null;
+    const rotated = () => window.parent !== window && parent.innerHeight > parent.innerWidth;
+    addEventListener('touchstart', event => {
+      if (!rotated() || event.touches.length !== 1) { last = null; return; }
+      last = {x:event.touches[0].clientX,y:event.touches[0].clientY};
+      target = event.target;
+    }, {passive:true});
+    addEventListener('touchmove', event => {
+      if (!last || !rotated() || event.touches.length !== 1) return;
+      // Keep the viewer's pinch/pan and carousels' native gesture handlers.
+      if (target.closest('.project-reader-viewport,.ip-accordion,.illustration-grid-scroll,.illustration-viewer-rail,video,input')) return;
+      const touch = event.touches[0];
+      const dx = touch.clientX-last.x;
+      const dy = last.y-touch.clientY;
+      last = {x:touch.clientX,y:touch.clientY};
+      if (document.documentElement.classList.contains('is-loading')) return;
+      event.preventDefault();
+      window.scrollBy({top:Math.abs(dx)>Math.abs(dy)?dx:dy,behavior:'instant'});
+    }, {passive:false});
+    addEventListener('touchend', () => { last = null; }, {passive:true});
+    return;
+  }
   const phone = matchMedia('(pointer:coarse)').matches && Math.min(screen.width, screen.height) <= 600;
   if (!phone) { gate?.remove(); return; }
   const frame = document.createElement('iframe');
