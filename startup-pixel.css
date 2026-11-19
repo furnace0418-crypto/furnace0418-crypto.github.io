@@ -8,3 +8,17 @@
 .startup-track::before{content:'';position:absolute;inset:4px 7px;background:#000;clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 50%,calc(100% - 7px) 100%,7px 100%,0 50%)}
 .startup-track::after{position:relative;width:var(--load-progress,5%)!important;height:100%;background:#fff!important;animation:none!important;transition:width .25s steps(8,end)}
 .startup-retry{color:#fff;border:1px solid #fff;background:#000;font:12px monospace;margin-top:20px;padding:8px 18px}
+
+/* Carry the portfolio's warm white, charcoal and furnace-red identity. */
+#site-startup{background:radial-gradient(ellipse at 50% 55%,#201719 0%,#101112 44%,#0b0c0d 78%)!important;color:#f1eee8!important;font-family:Arial,sans-serif}
+.startup-inner{width:min(340px,calc(100vw - 64px))}
+.startup-name{display:block;font:900 38px/1 Arial,sans-serif;letter-spacing:-2px;color:#f1eee8;margin-bottom:34px}
+.startup-name::after{content:'';display:inline-block;width:7px;height:7px;background:#c84349;border-radius:50%;margin-left:9px;vertical-align:middle}
+.startup-meta{display:flex;justify-content:space-between;align-items:center;font:600 9px/1.5 Arial,sans-serif;letter-spacing:2px;color:#a9a5a1}
+.startup-meta>span:first-child{display:block;font-size:9px}
+.startup-status{min-height:0;color:#f1eee8;text-shadow:none;font:600 10px/1.5 monospace;letter-spacing:1.5px}
+.startup-track{height:16px!important;margin-top:12px!important;background:#f1eee866!important;padding:3px 7px}
+.startup-track::before{inset:2px 4px;background:#111213}
+.startup-track::after{background:#c84349!important;box-shadow:0 0 15px #c8434950}
+.startup-inner::after{content:'DESIGN / IMAGINATION / EXPRESSION';display:block;margin-top:18px;font:8px/1.5 Arial,sans-serif;letter-spacing:2px;color:#777471}
+.startup-retry{border-color:#c8434966;color:#f1eee8;background:#211719}

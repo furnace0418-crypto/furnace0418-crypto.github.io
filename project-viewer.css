@@ -11,6 +11,7 @@
 .project-reader-pages{position:relative;min-width:100%;padding:12px;box-sizing:border-box}
 .project-reader-page{margin:0 0 18px;line-height:0}
 .project-reader-page:last-child{margin-bottom:0}
+.project-reader-pages[data-project="logis-bad-idea"] .project-reader-page{margin:0!important}
 .project-reader-page img{display:block;width:100%;height:auto;max-width:none;user-select:none;-webkit-user-drag:none}
 .project-reader-controls{position:relative;width:44px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
 .project-reader-controls>button{width:42px;height:42px;display:grid;place-items:center;border:1px solid #ffffff35;background:#202020;color:#eee;border-radius:50%;cursor:pointer;transition:background .2s,border-color .2s}

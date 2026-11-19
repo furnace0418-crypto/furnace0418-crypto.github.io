@@ -86,7 +86,7 @@ export function createProjectViewer(React,jsx){
      onPointerMove:event=>{if(!drag.current)return;const d=drag.current;view.current.scrollLeft=d.left-event.clientX+d.x;view.current.scrollTop=d.top-event.clientY+d.y},
      onPointerUp:()=>{drag.current=null;view.current?.classList.remove('is-dragging')},
      onPointerCancel:()=>{drag.current=null;view.current?.classList.remove('is-dragging')},
-     children:el('div',{className:'project-reader-pages',style:{width:`${zoom*100}%`},children:pages.map((p,i)=>el('figure',{ref:node=>{pagesRef.current[i]=node},className:'project-reader-page',children:el('img',{src:p.src,alt:`${item.titleCn} · ${p.label||'第 '+(i+1)+' 页'}`,draggable:false,loading:i<2?'eager':'lazy',width:p.width,height:p.height})},p.src))})
+     children:el('div',{className:'project-reader-pages','data-project':item.id,style:{width:`${zoom*100}%`},children:pages.map((p,i)=>el('figure',{ref:node=>{pagesRef.current[i]=node},className:'project-reader-page',children:el('img',{src:p.src,alt:`${item.titleCn} · ${p.label||'第 '+(i+1)+' 页'}`,draggable:false,loading:i<2?'eager':'lazy',width:p.width,height:p.height})},p.src))})
     }),
     els('aside',{className:'project-reader-controls','aria-label':'阅读控制',children:[
      el('button',{onClick:()=>go(-1),disabled:page===0,'aria-label':'上一页',title:'上一页',children:icon('up')}),
