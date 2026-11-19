@@ -1,0 +1,14 @@
+/* A viewport layer avoids Safari's scrolling background-attachment fallback. */
+@media (hover:none) and (pointer:coarse){
+  html{background:#0e0f0f}
+  body{isolation:isolate;background:#0e0f0f!important}
+  body::before{content:''!important;display:block!important;position:fixed!important;inset:0!important;z-index:-1!important;pointer-events:none!important;opacity:1!important;mix-blend-mode:normal!important;background:linear-gradient(rgba(10,11,11,.84),rgba(10,11,11,.84)),url('/images/portfolio-collage-bg.webp') center / cover no-repeat!important;transform:translateZ(0)}
+  main>section:not(#hero),.contact-finale,.site-footer{background:transparent!important}
+  #ip .ip-accordion .ag-panel__media::after{display:none!important}
+  #ip .ip-accordion .ag-panel__media img{opacity:1!important;filter:none!important;mask-image:none!important;-webkit-mask-image:none!important}
+  #ip .ip-accordion .ag-panel--lumi .ag-panel__media img{object-position:82% center!important}
+  #ip .ip-accordion .ag-panel--sloth .ag-panel__media img{object-position:78% center!important}
+  #ip .ip-accordion .ag-panel--santiago .ag-panel__media img{object-position:30% center!important}
+  #ip .ip-accordion .ag-panel--taoyuan .ag-panel__media img{object-position:24% center!important}
+  #ip .ip-accordion .ag-panel--lumi .project-cover-copy{background:linear-gradient(180deg,transparent 35%,rgba(55,6,8,.15) 53%,rgba(37,4,7,.96) 100%)!important}
+}
